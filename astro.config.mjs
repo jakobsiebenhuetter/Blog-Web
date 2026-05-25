@@ -7,5 +7,5 @@ export default defineConfig({
         enabled: false
     },
     site: 'https://jakobsiebenhuetter.github.io',
-    base: 'Blog.Web'
+    base: 'Blog-Web'
 });
