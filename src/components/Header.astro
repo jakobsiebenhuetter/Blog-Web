@@ -1,27 +1,17 @@
 ---
-// const links = Astro.props;
-const dummyLinks: Array<{name: string, href: string, target?: string}> = [
-  {
-    name: "Home",
-    href: "/Blog-Web/",
-  },
-  {
-    name: "Blog",
-    href: "/Blog-Web/blog",
-    target: "_blank",
-  },
-  {
-    name: "Resources",
-    href: "#",
-  },
-];
+import type { ILink } from "../layouts/Layout.astro";
+
+export interface IProps {
+    links: ILink[];
+}
+const {links} = Astro.props as IProps;
 ---
 
 <header class="font-mono">
   <nav>
     <ul>
       {
-        dummyLinks.map((link) => (
+        links.map((link) => (
           <li>
             <a href={link.href} target={link.target}>
               {link.name}
