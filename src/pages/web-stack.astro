@@ -1,0 +1,15 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+import {links as headerLinks} from "../assets/data/web-stack/headerLinks.json";
+import {links as sidebarLinks} from "../assets/data/web-stack/sidebarLinks.json";
+---
+
+<Layout
+  title="Mein Web Stack"
+  description="Ein Überblick über die Technologien, die ich in meinem Web-Stack verwende."
+  headerLinks={headerLinks}
+  sidebarLinks={sidebarLinks}
+>
+  <h1>Mein Web Stack</h1>
+</Layout>

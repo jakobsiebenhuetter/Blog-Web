@@ -1,0 +1,49 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout
+  title="Impressum"
+  description="Impressum und Offenlegung gemäß § 5 ECG und § 25 MedienG."
+>
+  <article class="impressum">
+    <h1>Impressum</h1>
+    <p>Angaben gemäß § 5 E-Commerce-Gesetz (ECG) und Offenlegung gemäß § 25 Mediengesetz (MedienG).</p>
+
+    <h2>Medieninhaber und für den Inhalt verantwortlich</h2>
+    <p>
+      [Vorname Nachname]<br />
+      [Straße und Hausnummer]<br />
+      [PLZ Ort]<br />
+      Österreich
+    </p>
+
+    <h2>Kontakt</h2>
+    <p>
+      E-Mail: <a href="mailto:[max.mustermann@gmx.at]">max.mustermann@gmx.at</a><br />
+    </p>
+
+    <h2>Grundlegende Richtung (Blattlinie) gemäß § 25 MedienG</h2>
+    <p>[z. B. Privater Blog über Webtechnologien. Keine kommerzielle Absicht.]</p>
+
+    <h2>Haftung für Inhalte und Links</h2>
+    <p>
+      Die Inhalte dieser Website wurden mit größtmöglicher Sorgfalt erstellt. Für die
+      Richtigkeit, Vollständigkeit und Aktualität der Inhalte wird keine Gewähr übernommen.
+      Für Inhalte externer verlinkter Websites ist stets der jeweilige Anbieter verantwortlich.
+    </p>
+  </article>
+</Layout>
+
+<style>
+  .impressum {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 24px 16px;
+    line-height: 1.6;
+  }
+  .impressum h2 {
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+  }
+</style>

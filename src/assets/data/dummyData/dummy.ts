@@ -31,7 +31,7 @@ export const sidebarProps: ISidebarProps =
 		{
 			name: "Blog",
 			href: "/Blog-Web/blog",
-			target: "_blank",
+			// target: "_blank",
 		},
 		
 		{
