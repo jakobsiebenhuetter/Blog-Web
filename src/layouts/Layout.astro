@@ -22,13 +22,16 @@ const {title, description, headerLinks = headerProps.links, sidebarLinks = sideb
 	</head>
 	<body>
 		<Header links={headerLinks} />
-		<div class="layout-body">
+		<div class="sidebar-main-wrapper">
 			<Sidebar links={sidebarLinks} />
-			<main>
-				<slot />
-			</main>
+
+			<div class="layout-body">
+				<main>
+					<slot />
+				</main>
+				<Footer />
+			</div>
 		</div>
-		<Footer />
 	</body>
 	
 </html>
@@ -51,7 +54,8 @@ const {title, description, headerLinks = headerProps.links, sidebarLinks = sideb
 	}
 
 	@media (min-width: 768px) {
-		.layout-body {
+		.sidebar-main-wrapper {
+			display: flex;
 			flex-direction: row;
 		}
 	}
