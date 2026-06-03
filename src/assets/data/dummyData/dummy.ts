@@ -12,10 +12,10 @@ export const headerProps: IHeaderProps =
 			href: "/Blog-Web/blog",
 			// target: "_blank",
 		},
-		{
-			name: "LLMs",
-			href: "#",
-		},
+		// {
+		// 	name: "LLMs",
+		// 	href: "#",
+		// },
 	]
 }
 
@@ -34,9 +34,9 @@ export const sidebarProps: ISidebarProps =
 			// target: "_blank",
 		},
 		
-		{
-			name: "LLMs",
-			href: "#",
-		},
+		// {
+		// 	name: "LLMs",
+		// 	href: "#",
+		// },
 	]
 }
