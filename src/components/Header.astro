@@ -29,12 +29,22 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 
 <style>
     header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
       display: flex;
       align-items: center;
       background-color: rgb(240, 218, 54);
       font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
       height: 75px;
+      flex-shrink: 0;
     }
+
+    @media (prefers-color-scheme: dark) {
+    header {
+      background-color: #030712;  /* gray-950 */
+    }
+  }
 
     ul {
         display: flex-start;

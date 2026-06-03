@@ -1,23 +1,28 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Content, getHeadings, frontmatter } from "../markdown/web-stack.md";
 
 import {links as headerLinks} from "../assets/data/web-stack/headerLinks.json";
 import {links as sidebarLinks} from "../assets/data/web-stack/sidebarLinks.json";
+
+const headings = getHeadings();
+
 ---
 
 <Layout
-  title="Mein Web Stack"
-  description="Ein Überblick über die Technologien, die ich in meinem Web-Stack verwende."
+  title={frontmatter.title}
+  description={frontmatter.description}
   headerLinks={headerLinks}
   sidebarLinks={sidebarLinks}
+  headings={headings}
 >
-  <h1>Mein Web Stack</h1>
+  <article class="prose">
+    <Content />
+  </article>
 </Layout>
 
 <style>
-  h1 {
-    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
-    color: #333;
-    text-align: center;
+  .prose {
+    line-height: 1.6;
   }
 </style>
