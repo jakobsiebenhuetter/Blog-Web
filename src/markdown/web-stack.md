@@ -5,6 +5,12 @@ description: "Womit ich arbeite: JavaScript, TypeScript, Node.js – und aktuell
 
 # Mein Web Stack
 
+```ts
+function main() {
+    return 3;
+}
+```
+
 Hier ein ausführlicher Überblick über die Technologien, mit denen ich arbeite. Diese Seite wächst mit der Zeit weiter – wenn neue Tools dazukommen oder alte rausfliegen, halte ich sie hier aktuell.
 
 ## Sprachen
