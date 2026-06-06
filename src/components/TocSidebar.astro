@@ -1,0 +1,19 @@
+---
+import type { MarkdownHeading } from 'astro';
+
+const { items } = Astro.props as {
+    items: MarkdownHeading[]
+};
+---
+
+<aside class="toc-sidebar">
+    <h2>Inhaltsverzeichnis</h2>
+    <ul>
+        {items.map((item) => (
+            <li>
+                <div>
+                    <a href={'#'+ item.slug}>{item.text}</a>
+                </div>
+            </li>
+        ))}
+    </ul>
