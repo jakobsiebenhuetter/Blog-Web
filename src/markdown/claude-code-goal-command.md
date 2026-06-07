@@ -63,8 +63,17 @@ Nachdem Claude Code mit dem programmieren fertig wurde (Dauer ~20 min.) hat er m
 **PWA-/Sync-Goal:** „Erstelle alles Besprochene — installierbare PWA (Android + Desktop) + geräteübergreifende
    Sync — beurteile selbst was sinnvoll ist, und schreibe am Ende eine Zusammenfassung in ein `.md`."
 
+### Das Hosting zum testen
+- Ich habe Cloudflare als Tunnel verwendet für das lokale Hosting
+
+Damit ich meinen Rechner, als Server für das Hosting testweise verwenden kann, habe ich den Dienst von Cloudflare für den Tunnel verwendet, damit ich auch außerhalb meines Netzwerks ohne Probleme auf die Website zugreifen kann.
+Mit diesem Befehl kann man nach lokaler Installation von Clouflare einen Tunnel für die jeweilige Website herstellen. Befehl siehe auf dem Bild im Terminal.
+
+![Terminal mit Claudeflare CLI](../images/cloudeflare-tunnel.png)
+
 ### Meine Bewertung des Zwischenstandes der Todo Webapp
-- in Bearbeitung **...**
+Die ersten Ergebnisse würde ich als sehr gut bewerten. Bugs habe ich auf die Schnelle auch keine gefunden. Ein paar wenige Schnönheitsfehler gab es nur, wenn man in der Demo Version der Todos, die Tasks als erledigt markiert. Da kommt es vor, dass manchmal die als erledigt markierten Tasks nicht abgespeichert werden. Ein bis Zwei kleine Schönheitsfehler gab es auch beim Design. Welche ich aber mit einem Prompt sicher korrigieren lassen kann. Ansonsten, waren die Ergebnisse sehr zufriedenstellend.
+Derzeit wurde die Applikation nicht konkret getestet. 
 
 ## Next step Android App bauen lassen, welche sich mit der Webapp synchronisiert 
 - in Bearbeitung **...**
