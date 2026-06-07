@@ -19,7 +19,11 @@ const { items } = Astro.props as {
     </ul>
 
     <style>
-        
+        aside {
+            position: sticky;
+            top: 0;
+        }
+
        @media (max-width: 768px) {
             .toc-sidebar {
                 display: none;

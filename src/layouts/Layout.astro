@@ -48,8 +48,8 @@ const {
 					<slot />
 					<Footer />
 				</main>
+				{headings && headings.length ? <TocSidebar items={headings} /> : null}
 			</div>
-			{headings && headings.length ? <TocSidebar items={headings} /> : null}
 		</div>
 	</body>
 </html>
