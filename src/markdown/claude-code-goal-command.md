@@ -7,14 +7,12 @@ description: "Der /goal Befehl von Claude. Meine Erfahrungen"
 # Projekt Goal
 
 ## Beschreibung
-### Todo Webapp bauen mit Agentic Enginnering und den Befehl "/goal" testen
+### Todo Webapp bauen mit Claude Code und den Befehl "/goal" testen
 
 ## Was ist der Goal Modus und was macht er ?
 
-```
-/goal
+![Claude Code Terminal](../images/claude-goal.png)
 
-```
 Ich habe mir vorgenommen, erst mal nur vibe zu coden um zu sehen, wie gut das funktioniert und wie schnell ich damit sein werde
 
 Mein erster Prompt, welches ich mir von Gemini habe optimieren lassen für den goal Modus:
@@ -54,5 +52,19 @@ Bitte erstelle zuerst einen strukturierten Meilenstein-Plan, der zeigt, wie du d
 
 Nachdem Claude Code mit dem programmieren fertig wurde (Dauer ~20 min.) hat er mir eine schöne erste Website, ähnlich wie Todoist gebaut, was noch fehlt ist noch eine Möglichkeit sich einzuloggen.
 
-Den link zu der Website findest du hier:
-//...
+## Next step - Login/Signup einbauen (Dauer ~15 min.)
+
+**Login-Goal + Zusatzwünsche:** „Loginsystem einbauen" → (nach Rückfragen) eigenes jose-basiertes Auth mit
+   SQLite und geschütztem `/dashboard`. Ergänzt: „ein spezieller fantasievoller Button, der zur Login-Seite
+   weiterleitet; ein Logo erstellen; beim Klick ein Backdrop mit Logo + Spinner, bis die Login-Seite geladen ist."
+
+## Next step PWA bauen lassen, wird aber nicht verwendet - obsolet (Dauer ~10 min.)
+
+**PWA-/Sync-Goal:** „Erstelle alles Besprochene — installierbare PWA (Android + Desktop) + geräteübergreifende
+   Sync — beurteile selbst was sinnvoll ist, und schreibe am Ende eine Zusammenfassung in ein `.md`."
+
+### Meine Bewertung des Zwischenstandes der Todo Webapp
+- in Bearbeitung **...**
+
+## Next step Android App bauen lassen, welche sich mit der Webapp synchronisiert 
+- in Bearbeitung **...**
