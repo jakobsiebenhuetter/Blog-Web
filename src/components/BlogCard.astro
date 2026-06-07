@@ -1,24 +1,29 @@
 ---
-const items = Astro.props;
+const {title, description, href, date} = Astro.props;
 ---
 
 <li>
-    <div>
-        <a href="https://www.typescriptlang.org/" target="_blank" rel="noopener noreferrer">TypeScript</a>
-    </div>
+    <a href={href} target="_blank" rel="noopener noreferrer">
+        <p>{title}</p>
+        <p>{description}</p>
+        <span>{date}</span>
+    </a>
 </li>
 
 <style>
     li {
-        background-color: rebeccapurple;
-        color: white;
-        text-align: center;
-        border-radius: 6px;
-        margin: 15px 0;
-        width: 100%;
-        height: 50px;
         display: flex;
         align-items: center;
         justify-content: center;
+        background-color: rebeccapurple;
+        color: white;
+        border-radius: 6px;
+    }
+    li > a {
+
+        text-align: center;
+        margin: 15px 0;
+        width: 100%;
+        padding: 6px;
     }
 </style>
