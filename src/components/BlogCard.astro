@@ -3,7 +3,7 @@ const {title, description, href, date} = Astro.props;
 ---
 
 <li>
-    <a href={href} target="_blank" rel="noopener noreferrer">
+    <a href={href}>
         <p>{title}</p>
         <p>{description}</p>
         <span>{date}</span>
@@ -17,13 +17,25 @@ const {title, description, href, date} = Astro.props;
         justify-content: center;
         background-color: rebeccapurple;
         color: white;
+        margin: 15px 0;
         border-radius: 6px;
+        outline: 2px solid rgba(99, 102, 241, 0);
+        outline-offset: 0px;
     }
     li > a {
 
         text-align: center;
-        margin: 15px 0;
         width: 100%;
         padding: 6px;
+    }
+
+    li:hover {
+        outline: 2px solid rgba(99, 102, 241, 1);
+        outline-offset: 6px;
+    }
+
+    li:active {
+        background-color: #6366f1;
+        color: violet;
     }
 </style>
