@@ -7,10 +7,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 
 <header>
   <nav>
-
-
     <ul>
-        <li>
+        <li class="icon">
           <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
           <svg width="34px" height="34px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M0.792725 12.2929L5.08562 8.00002L0.792725 3.70712L2.20694 2.29291L7.91405 8.00002L2.20694 13.7071L0.792725 12.2929Z" fill="#000000"/>
@@ -27,12 +25,6 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
         ))
       }
     </ul>
-    <!-- <ul>
-        <li><a href="#">Icon</a></li>
-        <li><a href="/">Home</a></li>
-        <li><a href="/blog">Blog</a></li>
-        <li><a href="#">Resources</a></li>
-        </ul> -->
   </nav>
 </header>
 
@@ -49,15 +41,14 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
       flex-shrink: 0;
     }
 
-    @media (prefers-color-scheme: dark) {
-    header {
-      background-color: #030712;  /* gray-950 */
+    .icon {
+      min-width: 34px;
     }
-  }
 
     ul {
-        display: flex-start;
+        display: flex;
         align-items: center;
+        justify-content: center;
     }
 
     li {
@@ -69,9 +60,24 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
     li > a {
       color: #666;
     }
-
+    
     li > a.active {
       color: #000;
       font-weight: 500;
+    }
+    
+    @media (prefers-color-scheme: dark) {
+      header {
+        background-color: #030712;  /* gray-950 */
+      }
+      
+      .icon svg path {
+        fill: #f0da36;  /* yellow-400 */
+      }
+      
+      li > a.active {
+        color: #f0da36;  /* yellow-400 */
+        font-weight: 500;
+      }
     }
 </style>
