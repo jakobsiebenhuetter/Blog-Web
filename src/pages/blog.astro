@@ -2,13 +2,14 @@
 import Layout from "../layouts/Layout.astro";
 import BlogCard from "../components/BlogCard.astro";
 
-import blogData from "../assets/data/blog/blog.json";
+import {topics} from "../assets/data/blog/blog.json";
 ---
 
 <Layout>
   <h1>Blog</h1>
   <ul>
-    {blogData.topics.map((topic) => <BlogCard title={topic.title} description={topic.description} href={topic.href} date={topic.date}></BlogCard>)}
+    {topics.length === 0 ? <p style="color: red;">Es sind noch keine Blogeinträge vorhanden.</p> : null}
+    {topics.map((topic) => <BlogCard title={topic.title} description={topic.description} href={topic.href} date={topic.date}></BlogCard>)}
   </ul>
 </Layout>
 

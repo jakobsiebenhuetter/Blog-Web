@@ -8,7 +8,7 @@
 }
 
 html {
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-family: ui-monospace, "Cascadia Code", Consolas, monospace;
   line-height: 1.5;
 }
 
