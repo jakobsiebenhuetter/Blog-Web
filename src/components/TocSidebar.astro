@@ -1,34 +1,51 @@
 ---
-import type { MarkdownHeading } from 'astro';
+import type { MarkdownHeading } from "astro";
 
 const { items } = Astro.props as {
-    items: MarkdownHeading[]
+  items: MarkdownHeading[];
 };
 ---
 
 <aside class="toc-sidebar">
-    <h2>Inhaltsverzeichnis</h2>
-    <ul>
-        {items.map((item) => (
-            <li>
-                <div>
-                    <a href={'#'+ item.slug}>{item.text}</a>
-                </div>
-            </li>
-        ))}
-    </ul>
+  <h2>Inhaltsverzeichnis</h2>
+  <ul>
+    {
+      items.map((item) => (
+        <li>
+          <div>
+            <a href={"#" + item.slug}>{item.text}</a>
+          </div>
+        </li>
+      ))
+    }
+  </ul>
 </aside>
 
-    <style>
-        aside {
-            position: sticky;
-            top: 0;
-        }
+<style>
+  aside {
+    position: sticky;
+    top: 0;
+  }
 
-       @media (max-width: 1000px) {
-            .toc-sidebar {
-                display: none;
-            }
-        }
+  @media (max-width: 1000px) {
+    .toc-sidebar {
+      display: none;
+    }
+  }
+</style>
 
-    </style>
+<script>
+    const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
+    const main = document.querySelector('.main-scroll') as HTMLElement
+
+    main.addEventListener('scroll', () => {
+         headings.forEach((heading) => {
+            const headingTop = heading.getBoundingClientRect().top;
+            if(headingTop >= 0 && headingTop <= window.innerHeight / 4) {
+                (heading as HTMLElement).style.color = 'red';
+            } else {
+                (heading as HTMLElement).style.color = '';
+            };
+         });
+    })
+</script>
