@@ -38,32 +38,3 @@ const { items } = Astro.props as {
   }
 </style>
 
-<script is:inline>
-    const headings = document.querySelectorAll("h1, h2, h3, h4, h5, h6");
-    const tocHeadings = document.querySelectorAll('.toc-sidebar a');
-    const main = document.querySelector('.main-scroll')
-
-    main.addEventListener('scroll', () => {
-         headings.forEach((heading) => {
-            const headingTop = heading.getBoundingClientRect().top;
-            if(headingTop >= 0 && headingTop <= window.innerHeight / 2) {
-                heading.style.color = 'red';
-            
-            tocHeadings.forEach((tocHeading) => {
-                if(heading.textContent === tocHeading.textContent) {
-                    tocHeading.classList.add('active');
-                }
-            });
-
-            } else {
-                heading.style.color = '';
-                tocHeadings.forEach((tocHeading) => {
-                    if(heading.textContent === tocHeading.textContent) {
-                        tocHeading.classList.remove('active');
-                    }
-                });
-              
-            };
-         });
-    })
-</script>
