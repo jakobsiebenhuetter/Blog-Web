@@ -49,7 +49,7 @@ const { items } = Astro.props as {
          headings.forEach((headingElement) => {
             const heading = headingElement as HTMLElement; 
             const headingTop = heading.getBoundingClientRect().top;
-            if(headingTop >= 0 && headingTop <= window.innerHeight / 4) {
+            if(headingTop >= 0 && headingTop <= window.innerHeight / 4 ) {
                 heading.style.color = 'red';
             
             tocHeadings.forEach((tocHeading) => {
