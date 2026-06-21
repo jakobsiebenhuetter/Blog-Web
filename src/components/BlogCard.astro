@@ -1,18 +1,26 @@
 ---
-const {title, description, href, date, disabled} = Astro.props;
+export interface IBlogCardProps {
+    title: string;
+    description: string;
+    href: string;
+    date: string;
+    disabled?: boolean;
+    
+}
+
+const props = Astro.props;
+const topic: IBlogCardProps = props.topic;
 ---
 
-<li class={disabled ? 'disabled blog-card' : 'blog-card'}>
-    <a href={href}>
-        <p class="title">{title}</p>
-        <p>{description}</p>
-        <span>{date}</span>
+<li class={topic.disabled ? 'disabled blog-card' : 'blog-card'}>
+    <a href={topic.href}>
+        <p class="title">{topic.title}</p>
+        <p>{topic.description}</p>
+        <span>{topic.date}</span>
     </a>
 </li>
 
 <style>
-    
-
     li {
         display: flex;
         align-items: center;

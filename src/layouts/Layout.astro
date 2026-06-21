@@ -11,20 +11,21 @@ import TSLogo from "../images/TS-logo.png";
 import TocSidebar from "../components/TocSidebar.astro";
 import type { ILink } from '../types';
 
+interface ILayoutProps {
+	title: string;
+	description: string;
+	headerLinks?: ILink[];
+	sidebarLinks?: ILink[];
+	headings?: MarkdownHeading[];
+}
 
 const {
 	title,
 	description,
 	headerLinks = headerProps.links,
 	sidebarLinks = sidebarProps.links,
-	headings,
-} = Astro.props as {
-	title: string;
-	description: string;
-	headerLinks?: ILink[];
-	sidebarLinks?: ILink[];
-	headings?: MarkdownHeading[];
-};
+	headings
+} = Astro.props as ILayoutProps;
 ---
 
 <!doctype html>

@@ -1,17 +1,19 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import BlogCard from "../components/BlogCard.astro";
+import type {IBlogCardProps} from "../components/BlogCard.astro";
 // import BlogCard from "../components/svelte/BlogCard/BlogCard.svelte";
 // import BlogList from "../components/svelte/BlogList/BlogList.svelte";
 
 import {topics} from "../assets/data/blog/blog.json";
+const blogTopics: IBlogCardProps[] = topics;
 ---
 
 <Layout>
   <h1>Blog</h1>
   <ul>
-    {topics.length === 0 ? <p style="color: red;">Es sind noch keine Blogeinträge vorhanden.</p> : null}
-    {topics.map((topic) => <BlogCard title={topic.title} description={topic.description} href={topic.href} date={topic.date} disabled={topic.disabeld}></BlogCard>)}      
+    {blogTopics.length === 0 ? <p style="color: red;">Es sind noch keine Blogeinträge vorhanden.</p> : null}
+    {blogTopics.map((blogTopic) => <BlogCard topic={blogTopic}></BlogCard>)}      
      <!-- <BlogList client:load></BlogList> -->
   </ul>
 </Layout>
