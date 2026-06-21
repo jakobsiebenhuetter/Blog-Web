@@ -1,8 +1,8 @@
 ---
-const {title, description, href, date} = Astro.props;
+const {title, description, href, date, disabled} = Astro.props;
 ---
 
-<li>
+<li class={disabled ? 'disabled blog-card' : 'blog-card'}>
     <a href={href}>
         <p class="title">{title}</p>
         <p>{description}</p>
@@ -49,6 +49,14 @@ const {title, description, href, date} = Astro.props;
         background-color: black;
         padding: 0 8px;
         border-radius: 6px;
+    }
+
+    .disabled,
+    .disabled > a {
+        color: #999;
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+        pointer-events: none;
     }
 
 </style>

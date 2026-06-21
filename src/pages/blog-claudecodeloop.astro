@@ -1,0 +1,8 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {Content, frontmatter} from '../markdown/claude-code-loop-command.md';
+---
+
+<Layout title={frontmatter.title} description={frontmatter.description}>
+    <Content />
+</Layout>
