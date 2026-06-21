@@ -3,7 +3,7 @@ const {topic, oncontextmenu} = $props();
 
 </script>
 
-<li class="blog-card" oncontextmenu={oncontextmenu}>
+<li class={topic.disabled ? 'disabled blog-card' : 'blog-card'} oncontextmenu={oncontextmenu}>
        <a href={topic.href}>
         <p class="title">{topic.title}</p>
         <p>{topic.description}</p>
@@ -46,5 +46,13 @@ const {topic, oncontextmenu} = $props();
         border-radius: 6px;
     }
 
+
+    .disabled,
+    .disabled > a {
+        color: #999;
+        background-color: #e0e0e0;
+        cursor: not-allowed;
+        pointer-events: none;
+    }
 </style>
 

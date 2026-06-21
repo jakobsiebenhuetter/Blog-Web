@@ -8,7 +8,7 @@ const items = [
         onClick: () => {
             console.log('Kommentieren clicked');
         },
-        disabeld: true
+        disabled: true
     },
     { 
         id: 'JSFiddle',
@@ -48,7 +48,7 @@ const items = [
 <div class="context-menu" style:left = {posX + 'px'} style:top = {posY + 'px'}>
     <ul>
         {#each items as item}
-        <li class={item.disabeld ? 'disabled' : ''}>
+        <li class={item.disabled ? 'disabled' : ''}>
             <button onclick={item.onClick} id={item.id}>{item.label}</button>
         </li>
         {/each}
