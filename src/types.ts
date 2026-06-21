@@ -11,3 +11,12 @@ export interface IHeaderProps {
 export interface ISidebarProps {
     links: ILink[]
 }
+
+export interface IBlogCardProps {
+    title: string;
+    description: string;
+    href: string;
+    date: string;
+    disabled?: boolean;
+    
+}

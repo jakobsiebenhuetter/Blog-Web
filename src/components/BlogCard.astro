@@ -1,15 +1,11 @@
 ---
-export interface IBlogCardProps {
-    title: string;
-    description: string;
-    href: string;
-    date: string;
-    disabled?: boolean;
-    
-}
+import type { IBlogCardProps } from "../types";
 
-const props = Astro.props;
-const topic: IBlogCardProps = props.topic;
+interface Props {
+    topic: IBlogCardProps;
+}
+const {topic} = Astro.props;
+
 ---
 
 <li class={topic.disabled ? 'disabled blog-card' : 'blog-card'}>
