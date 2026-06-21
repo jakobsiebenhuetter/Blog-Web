@@ -1,9 +1,8 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import BlogCard from "../components/BlogCard.astro";
+// import BlogCard from "../components/BlogCard.astro";
 import type {IBlogCardProps} from "../types";
-// import BlogCard from "../components/svelte/BlogCard/BlogCard.svelte";
-// import BlogList from "../components/svelte/BlogList/BlogList.svelte";
+import BlogList from "../components/svelte/BlogList/BlogList.svelte";
 
 import {topics} from "../assets/data/blog/blog.json";
 const blogTopics: IBlogCardProps[] = topics;
@@ -13,8 +12,7 @@ const blogTopics: IBlogCardProps[] = topics;
   <h1>Blog</h1>
   <ul>
     {blogTopics.length === 0 ? <p style="color: red;">Es sind noch keine Blogeinträge vorhanden.</p> : null}
-    {blogTopics.map((blogTopic) => <BlogCard topic={blogTopic}></BlogCard>)}      
-     <!-- <BlogList client:load></BlogList> -->
+    <BlogList topics={blogTopics} client:load></BlogList> 
   </ul>
 </Layout>
 
