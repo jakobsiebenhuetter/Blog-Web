@@ -1,18 +1,18 @@
 {
     "topics": [
         {
-            "title": "Claude Code - /goal Befehl",
-            "description": "Es handelt sich hierbei um ein kleines Testprojekt, wo ich mit nur fasst Vibe Coding und Claude Code den goal Befehl austeste, um herauszufinden, wie weit ich damit komme und wo die Grenzen sind.",
-            "href": "/Blog-Web/blog-claudecodegoal",
-            "date": "2026-06-07",
-            "disabeld": false
-        },
-        {
             "title": "Claude Code - /loop Befehl",
             "description": "Fortsetzung des /goal-Projekts: Mit /loop wird die Todo-App Runde für Runde Richtung Todoist ausgebaut — mit Bug-Check nach jedem Feature.",
             "href": "/Blog-Web/blog-claudecodeloop",
             "date": "2026-06-21",
-            "disabeld": true
+            "disabled": true
+        },
+        {
+            "title": "Claude Code - /goal Befehl",
+            "description": "Es handelt sich hierbei um ein kleines Testprojekt, wo ich mit nur fasst Vibe Coding und Claude Code den goal Befehl austeste, um herauszufinden, wie weit ich damit komme und wo die Grenzen sind.",
+            "href": "/Blog-Web/blog-claudecodegoal",
+            "date": "2026-06-07",
+            "disabled": false
         }
     ]
 }
