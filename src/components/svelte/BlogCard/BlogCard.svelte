@@ -1,13 +1,19 @@
 <script>
+import Button from "../Button/Button.svelte";
 const {topic, oncontextmenu} = $props();
 
 </script>
 
-<li class={topic.disabled ? 'disabled blog-card' : 'blog-card'} oncontextmenu={oncontextmenu}>
-       <a href={topic.href}>
-        <p class="title">{topic.title}</p>
-        <p>{topic.description}</p>
-        <span>{topic.date}</span>
+<li class={topic.disabled ? 'disabled blog-card' : 'blog-card'}>
+    <a href={topic.href}>
+        <div>
+            <p class="title">{topic.title}</p>
+            <p>{topic.description}</p>
+            <span>{topic.date}</span>
+        </div>
+        <div class="button-container">
+            <Button text={'\u22EF'}  handleClick={oncontextmenu}></Button>
+        </div>
     </a>
 </li>
 
@@ -35,6 +41,14 @@ const {topic, oncontextmenu} = $props();
         background-color: rgb(47, 46, 49);
     }
 
+    a {
+        display: flex;
+        justify-content: space-between;
+        text-decoration: none;
+        color: white;
+        width: 100%;
+    }
+
     .title {
         margin: 0;
         display: inline-flex;
@@ -44,6 +58,15 @@ const {topic, oncontextmenu} = $props();
         background-color: black;
         padding: 0 8px;
         border-radius: 6px;
+    }
+
+    .button-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50px;
+        height: 4px!important;
+        margin: 6px;
     }
 
 

@@ -1,45 +1,42 @@
 <script>
-  import { text } from "./dummyData.json";
-  import Text from "../Text/Text.svelte";
+let { handleClick, text = '', icon = null, color = '' } = $props();
 
-  // let name = 'Hello World :-)';
-  // if (text) name = text;
 
-  let counter = $state(0);
-
-  function handleClick() {
-    // alert('Svelte Button clicked!');
-    counter++;
-  }
 </script>
 
-<button class="btn" onclick={handleClick}>{text.toUpperCase()}<Text></Text><span>{counter}</span><span>{counter === 0 || counter === 1 ? "Time" : "Times"} </span></button>
+<button id="btn" onclick={handleClick}><div class="text">{text.toUpperCase()}</div></button>
+
 
 <style>
-  .btn {
+
+  div.text {
     display: flex;
-    gap: 15px;
-    padding: 5px;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
-    background-color: #007bff;
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    border-radius: 4px;
-  }
-
-  .btn:hover {
-    background-color: #0056b3;
-  }
-
-  span {
+    justify-content: center;
     color: goldenrod;
     font-family:
       Comic Sans MS,
       cursive;
     font-size: 1.2em;
   }
+  #btn {
+    display: flex;
+
+    justify-content: center;
+    background-color: transparent;
+    align-items: center;
+    color: white;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 4px;
+    width: 100%;
+  }
+
+  #btn:hover {
+    background-color: #7e8081;
+  }
+
+
 </style>
