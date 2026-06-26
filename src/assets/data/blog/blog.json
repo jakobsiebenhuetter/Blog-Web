@@ -3,16 +3,31 @@
         {
             "title": "Claude Code - /loop Befehl",
             "description": "Fortsetzung des /goal-Projekts: Mit /loop wird die Todo-App Runde für Runde Richtung Todoist ausgebaut — mit Bug-Check nach jedem Feature.",
-            "href": "/Blog-Web/blog-claudecodeloop",
+            "href": "/Blog-Web/articles/claude-code-loop-command",
             "date": "2026-06-21",
-            "disabled": true
+            "disabled": false
         },
         {
             "title": "Claude Code - /goal Befehl",
             "description": "Es handelt sich hierbei um ein kleines Testprojekt, wo ich mit nur fasst Vibe Coding und Claude Code den goal Befehl austeste, um herauszufinden, wie weit ich damit komme und wo die Grenzen sind.",
-            "href": "/Blog-Web/blog-claudecodegoal",
+            "href": "/Blog-Web/articles/claude-code-goal-command",
             "date": "2026-06-07",
             "disabled": false
+        },
+
+        {
+            "title": "Einstieg in Svelte.js",
+            "description": "In diesem Blogbeitrag geht es um den Einstieg in Svelte, ein modernes Frontend-Framework, das sich durch seine Einfachheit und Effizienz auszeichnet.",
+            "href": "/Blog-Web/blog-svelte",
+            "date": "...",
+            "disabled": true
+        },
+        {
+            "title": "Was ist ein Tunnel in der Webentwicklung",
+            "description": "In diesem Blogbeitrag erkläre ich, was ein Tunnel in der Webentwicklung ist und wie er verwendet wird.",
+            "href": "/Blog-Web/blog-tunnel",
+            "date": "...",
+            "disabled": true
         }
     ]
 }

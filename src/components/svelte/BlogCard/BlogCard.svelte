@@ -6,7 +6,7 @@ const {topic, oncontextmenu} = $props();
 
 <li class={topic.disabled ? 'disabled blog-card' : 'blog-card'}>
     <a href={topic.href}>
-        <div>
+        <div class="title-wrapper">
             <p class="title">{topic.title}</p>
             <p>{topic.description}</p>
             <span>{topic.date}</span>
@@ -39,6 +39,10 @@ const {topic, oncontextmenu} = $props();
 
     li:active {
         background-color: rgb(47, 46, 49);
+    }
+
+    .title-wrapper {
+        max-width: 800px;
     }
 
     a {

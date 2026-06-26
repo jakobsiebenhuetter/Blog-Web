@@ -4,7 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import type {IBlogCardProps} from "../types";
 import BlogList from "../components/svelte/BlogList/BlogList.svelte";
 
-import {topics} from "../assets/data/blog/blog.json";
+import {topics} from "../assets/data/blog/blog.json"; // interessant der TS compiler erkennt das JSON file und kann es als typescript type erkennen.
 const blogTopics: IBlogCardProps[] = topics;
 ---
 
