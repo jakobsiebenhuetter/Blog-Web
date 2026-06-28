@@ -1,8 +1,9 @@
 ---
 import Layout from "../layouts/Layout.astro";
-
+import { Content, frontmatter } from '../markdown/about.md';
 ---
 
-<Layout>
+<Layout title={frontmatter.title} description={frontmatter.description}>
   <h1>About</h1>
+  <Content/>
 </Layout>

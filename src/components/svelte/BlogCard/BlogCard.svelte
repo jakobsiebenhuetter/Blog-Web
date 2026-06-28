@@ -27,7 +27,6 @@ const {topic, oncontextmenu} = $props();
         background-color: rgb(118, 115, 122);
         color: white;
         margin: 15px 0;
-        padding: 10px;
         border-radius: 6px;
         outline: 2px solid rgba(99, 102, 241, 0);
         outline-offset: 0px;
@@ -51,6 +50,7 @@ const {topic, oncontextmenu} = $props();
         text-decoration: none;
         color: white;
         width: 100%;
+        padding: 10px;
     }
 
     .title {

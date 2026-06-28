@@ -1,5 +1,5 @@
 <script>
-let { handleClick, text = '', icon = null, color = '' } = $props();
+let { handleClick, text = '' } = $props();
 
 
 </script>
