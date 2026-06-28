@@ -6,11 +6,19 @@
         },
         {
             "name": "Blog",
-            "href": "/Blog-Web/blog"
+            "href": "/Blog-Web/blog/main"
         },
         {
             "name": "Projekte",
             "href": "/Blog-Web/ueber-mich"
+        },
+        {
+            "name": "Kontakt",
+            "href": "/Blog-Web/test"
+        },
+        {
+            "name": "Content Collection",
+            "href": "/Blog-Web/blogArticles"
         }
     ]
 }
