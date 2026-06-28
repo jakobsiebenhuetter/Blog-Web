@@ -9,7 +9,7 @@ export const headerProps: IHeaderProps =
 		},
 		{
 			name: "Blog",
-			href: "/Blog-Web/blog",
+			href: "/Blog-Web/blog/main",
 			// target: "_blank",
 		},
 		// {
@@ -30,7 +30,7 @@ export const sidebarProps: ISidebarProps =
 		
 		{
 			name: "Blog",
-			href: "/Blog-Web/blog",
+			href: "/Blog-Web/blog/main",
 			// target: "_blank",
 		},
 		
