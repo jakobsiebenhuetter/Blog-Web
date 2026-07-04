@@ -1,7 +1,7 @@
 <script>
 
-// let {posX, posY, openCommentWindow} = $props();
-let {posX, posY} = $props();
+let {posX, posY, openCommentWindow} = $props();
+
 
 $effect(() => {
     const menuWidth = 205;
@@ -14,10 +14,10 @@ $effect(() => {
 });
 
 
-// function handleMenu(e) {
-//     e.stopPropagation();
-//     openCommentWindow(e);
-// }
+function handleMenu(e) {
+    e.stopPropagation();
+    openCommentWindow(e);
+}
 
 const items = [
     {
@@ -25,7 +25,7 @@ const items = [
         label: 'Kommentieren',
         onClick: (e) => {
             console.log('Kommentieren clicked');
-            // handleMenu(e);
+            handleMenu(e);
         },
         disabled: false
     },

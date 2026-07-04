@@ -1,10 +1,10 @@
 <script>
-let { handleClick, text = '' } = $props();
+let { handleClick, text = '', circle = false } = $props();
 
 
 </script>
 
-<button id="btn" onclick={handleClick}><div class="text">{text.toUpperCase()}</div></button>
+<button id="btn" onclick={handleClick} class={circle ? 'circle': ''}><div class="text">{text.toUpperCase()}</div></button>
 
 
 <style>
@@ -18,7 +18,7 @@ let { handleClick, text = '' } = $props();
     font-family:
       Comic Sans MS,
       cursive;
-    font-size: 1.2em;
+    /* font-size: 1.2em; */
   }
   #btn {
     display: flex;
@@ -36,6 +36,15 @@ let { handleClick, text = '' } = $props();
 
   #btn:hover {
     background-color: #7e8081;
+  }
+
+  #btn.circle {
+    font-size: 12px;
+    border-radius: 50%;
+  }
+
+   #btn.circle:hover {
+    background-color: red;
   }
 
 
