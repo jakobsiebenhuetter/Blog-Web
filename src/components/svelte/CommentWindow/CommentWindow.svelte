@@ -1,21 +1,63 @@
 <script>
-  import { onMount } from "svelte";
-  import Button from "../Button/Button.svelte";
+import supabase from "../../../supabase/supabaseClient";
+
+import { onMount } from "svelte";
+import Button from "../Button/Button.svelte";
 
 const {closeCommentWindow} = $props();
 const comments = $state([]);
-comments.push(
+const dummyComments = [
     {username: "User1", comment: "This is a comment.", created_at: "2024-06-01 10:00"},
     {username: "User2", comment: "This is another comment.", created_at: "2024-06-01 10:05"}
-);
+];
     
 onMount(() => {
-    console.log("CommentWindow mounted");
+    // fetchComments();
+    getDatabaseDataOrDummy();
     
-    return () => console.log("CommentWindow unmounted");
+    return () => console.dir("CommentWindow unmounted");
 });
 
+async function getDatabaseDataOrDummy(dummy = false) {
+    if(dummy) // C++ Style :-)
+    {
+        console.log("Using dummy data for comments: ");
+        $inspect(comments);
+        comments.push(...dummyComments);
+        return;
+    }
+    
+    try {
+        const response = await supabase.from('comments').select();
 
+        if(response.error) {
+            throw new Error('Das ist ein Error aus FetchComments :' + error.message);
+        }
+
+        console.log("Fetched comments:", response.data);
+        comments.push(...response.data);
+
+    } catch (error) {
+        console.error("(Aus catch) Error fetching comments:", error);
+    }
+}
+const fetchComments = async () => {
+    try {
+        const response = await supabase.from('comments').select();
+
+        if(response.error) {
+            throw new Error('Das ist ein Error aus FetchComments :' + error.message);
+        }
+
+        console.log("Fetched comments:", response.data);
+
+        if(response.data) {
+            comments.splice(0, comments.length, ...response.data);
+        }
+    } catch (error) {
+        console.error("(Aus catch) Error fetching comments:", error);
+    }
+}
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -127,8 +169,5 @@ input[type="text"] {
     justify-content: center;
     align-items: center;
 }
-
-
-
 
 </style>
