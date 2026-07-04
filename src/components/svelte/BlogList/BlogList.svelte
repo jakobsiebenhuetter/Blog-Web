@@ -35,7 +35,8 @@
   {/each}
 
   {#if showMenu}
-    <ContextMenu posX={posX} posY={posY} openCommentWindow={openCommentWindow} />
+    <ContextMenu posX={posX} posY={posY}/>
+    <!-- <ContextMenu posX={posX} posY={posY} openCommentWindow={openCommentWindow} /> -->
   {/if}
 </div>
 
