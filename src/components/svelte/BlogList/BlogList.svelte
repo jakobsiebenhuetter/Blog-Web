@@ -1,10 +1,11 @@
 <script>
   import ContextMenu from "../ContextMenu/ContextMenu.svelte";
   import BlogCard from "../BlogCard/BlogCard.svelte";
-  // import { topics } from "../../../assets/data/blog/blog.json";
+  // import CommentWindow from "../CommentWindow/CommentWindow.svelte";
 
   const {topics} = $props();
   let showMenu = $state(false);
+  // let showCommentWindow = $state(false);
   let posX = $state(0);
   let posY = $state(0);
 
@@ -13,9 +14,19 @@
     e.preventDefault();
     e.stopPropagation();
     showMenu = true;
-    posX = e.clientX;
-    posY = e.clientY;
+    posX = e.pageX;
+    posY = e.pageY;
   }
+
+  // function openCommentWindow(e) {
+  //   e.stopPropagation();
+  //   showCommentWindow = true;
+  //   showMenu = false;
+  // }
+
+  // function closeCommentWindow() {
+  //   showCommentWindow = false;
+  // }
 </script>
 
 <div>
@@ -24,15 +35,20 @@
   {/each}
 
   {#if showMenu}
-    <ContextMenu {posX} {posY} />
+    <ContextMenu posX={posX} posY={posY} openCommentWindow={openCommentWindow} />
   {/if}
 </div>
 
+<!-- {#if showCommentWindow}
+  <CommentWindow closeCommentWindow={closeCommentWindow}/>
+{/if} -->
+
 <svelte:window
-  oncontextmenu={() => {
-    showMenu = false;
-  }}
   onclick={() => {
     showMenu = false;
   }}
 />
+
+<style>
+
+</style>

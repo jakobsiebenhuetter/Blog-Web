@@ -1,14 +1,33 @@
 <script>
+
+// let {posX, posY, openCommentWindow} = $props();
 let {posX, posY} = $props();
 
+$effect(() => {
+    const menuWidth = 205;
+    const windowWidth = window.innerWidth;  
+    const elementXPosition = posX + menuWidth;
+    const posXDiff = windowWidth - elementXPosition;
+
+    if (posXDiff < 50) 
+        posX = posX - menuWidth;
+});
+
+
+// function handleMenu(e) {
+//     e.stopPropagation();
+//     openCommentWindow(e);
+// }
+
 const items = [
-    { 
+    {
         id: 'Kommentieren',
         label: 'Kommentieren',
-        onClick: () => {
+        onClick: (e) => {
             console.log('Kommentieren clicked');
+            // handleMenu(e);
         },
-        disabled: true
+        disabled: false
     },
     { 
         id: 'JSFiddle',

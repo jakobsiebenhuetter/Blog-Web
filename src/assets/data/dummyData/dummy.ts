@@ -1,6 +1,11 @@
-import type { IHeaderProps, ISidebarProps } from "../../../types";
+import type { ILink } from "../../../types";
 
-export const headerProps: IHeaderProps = 
+interface ILinks {
+	links: ILink[]
+}
+
+
+export const headerProps: ILinks = 
 {
 	links: [
 		{
@@ -20,7 +25,7 @@ export const headerProps: IHeaderProps =
 }
 
 
-export const sidebarProps: ISidebarProps = 
+export const sidebarProps: ILinks = 
 { 
 	links: [
 		{

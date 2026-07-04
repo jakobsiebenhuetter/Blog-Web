@@ -1,7 +1,10 @@
 ---
-import type { ISidebarProps } from "../types";
+import type { ILink } from "../types";
 
-const { links } = Astro.props as ISidebarProps;
+interface Props {
+  links: ILink[];
+}
+const { links } = Astro.props;
 
 const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 
