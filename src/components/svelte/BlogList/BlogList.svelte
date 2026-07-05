@@ -1,27 +1,15 @@
 <script>
-  import ContextMenu from "../ContextMenu/ContextMenu.svelte";
   import BlogCard from "../BlogCard/BlogCard.svelte";
   import CommentWindow from "../CommentWindow/CommentWindow.svelte";
 
   const {topics} = $props();
-  let showMenu = $state(false);
   let showCommentWindow = $state(false);
-  let posX = $state(0);
-  let posY = $state(0);
 
-  function openContextMenu(e) {
-    console.log("Context menu opened");
+  
+  function openCommentWindow(e) {
     e.preventDefault();
     e.stopPropagation();
-    showMenu = true;
-    posX = e.pageX;
-    posY = e.pageY;
-  }
-
-  function openCommentWindow(e) {
-    e.stopPropagation();
     showCommentWindow = true;
-    showMenu = false;
   }
 
   function closeCommentWindow() {
@@ -31,13 +19,9 @@
 
 <div>
   {#each topics as topic}
-    <BlogCard topic={topic} oncontextmenu={openContextMenu}></BlogCard>
+    <BlogCard topic={topic} handleClick={openCommentWindow}></BlogCard>
   {/each}
 
-  {#if showMenu}
-    <ContextMenu posX={posX} posY={posY}/>
-    <ContextMenu posX={posX} posY={posY} openCommentWindow={openCommentWindow} />
-  {/if}
 </div>
 
 {#if showCommentWindow}
@@ -46,7 +30,7 @@
 
 <svelte:window
   onclick={() => {
-    showMenu = false;
+    closeCommentWindow();
   }}
 />
 

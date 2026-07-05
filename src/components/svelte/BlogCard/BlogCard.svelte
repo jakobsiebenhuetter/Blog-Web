@@ -1,6 +1,7 @@
 <script>
 import Button from "../Button/Button.svelte";
-const {topic, oncontextmenu} = $props();
+const {topic, handleClick} = $props();
+
 
 </script>
 
@@ -12,7 +13,7 @@ const {topic, oncontextmenu} = $props();
             <span>{topic.date}</span>
         </div>
         <div class="button-container">
-            <Button text={'\u22EF'}  handleClick={oncontextmenu}></Button>
+            <Button text='Kommentieren'  handleClick={(e) => handleClick(e)}></Button>
         </div>
     </a>
 </li>
@@ -68,8 +69,8 @@ const {topic, oncontextmenu} = $props();
         display: flex;
         justify-content: center;
         align-items: center;
-        width: 50px;
-        height: 4px!important;
+        width: 150px;
+        height: 4px;
         margin: 6px;
     }
 

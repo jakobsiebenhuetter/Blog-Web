@@ -51,9 +51,6 @@ const fetchComments = async () => {
 
         console.log("Fetched comments:", response.data);
 
-        if(response.data) {
-            comments.splice(0, comments.length, ...response.data);
-        }
     } catch (error) {
         console.error("(Aus catch) Error fetching comments:", error);
     }
