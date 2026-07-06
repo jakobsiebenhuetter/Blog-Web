@@ -24,9 +24,9 @@
 
 </div>
 
-{#if showCommentWindow}
+<!-- {#if showCommentWindow}
   <CommentWindow closeCommentWindow={closeCommentWindow}/>
-{/if}
+{/if} -->
 
 <svelte:window
   onclick={() => {
