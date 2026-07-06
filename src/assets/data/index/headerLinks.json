@@ -13,12 +13,12 @@
             "href": "/Blog-Web/ueber-mich"
         },
         {
-            "name": "Kontakt",
-            "href": "/Blog-Web/test"
+            "name": "Anmelden",
+            "href": "/Blog-Web/login"
         },
         {
-            "name": "Content Collection",
-            "href": "/Blog-Web/blogArticles"
+            "name": "Registrieren",
+            "href": "/Blog-Web/signup"
         }
     ]
 }

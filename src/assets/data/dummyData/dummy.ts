@@ -17,10 +17,14 @@ export const headerProps: ILinks =
 			href: "/Blog-Web/blog/main",
 			// target: "_blank",
 		},
-		// {
-		// 	name: "LLMs",
-		// 	href: "#",
-		// },
+        {
+            "name": "Anmelden",
+            "href": "/Blog-Web/login"
+        },
+        {
+            "name": "Registrieren",
+            "href": "/Blog-Web/signup"
+        }
 	]
 }
 
