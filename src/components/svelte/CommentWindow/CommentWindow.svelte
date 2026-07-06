@@ -1,60 +1,88 @@
 <script>
-import supabase from "../../../supabase/supabaseClient";
+// import supabase from "../../../supabase/supabaseClient";
 
-import { onMount } from "svelte";
-import Button from "../Button/Button.svelte";
+// import { onMount } from "svelte";
+// import Button from "../Button/Button.svelte";
 
-const {closeCommentWindow} = $props();
-const comments = $state([]);
-const dummyComments = [
-    {username: "User1", comment: "This is a comment.", created_at: "2024-06-01 10:00"},
-    {username: "User2", comment: "This is another comment.", created_at: "2024-06-01 10:05"}
-];
+// const {closeCommentWindow} = $props();
+// let comments = $state([]);
+// let message = $state("");
+
+// const dummyComments = [
+//     {username: "User1", comment: "This is a comment.", created_at: "2024-06-01 10:00"},
+//     {username: "User2", comment: "This is another comment.", created_at: "2024-06-01 10:05"}
+// ];
     
-onMount(() => {
-    // fetchComments();
-    getDatabaseDataOrDummy();
+// onMount(() => {
+//     // fetchComments();
+//     getDatabaseDataOrDummy();
     
-    return () => console.dir("CommentWindow unmounted");
-});
+//     return () => console.dir("CommentWindow unmounted");
+// });
 
-async function getDatabaseDataOrDummy(dummy = false) {
-    if(dummy) // C++ Style :-)
-    {
-        console.log("Using dummy data for comments: ");
-        $inspect(comments);
-        comments.push(...dummyComments);
-        return;
-    }
+// async function getDatabaseDataOrDummy(dummy = false) {
+//     if(dummy) // C++ Style :-)
+//     {
+//         console.log("Using dummy data for comments: ");
+//         $inspect(comments);
+//         comments.push(...dummyComments);
+//         return;
+//     }
     
-    try {
-        const response = await supabase.from('comments').select();
+//     try {
+//         const response = await supabase.from('comments').select();
 
-        if(response.error) {
-            throw new Error('Das ist ein Error aus FetchComments :' + error.message);
-        }
+//         if(response.error) {
+//             throw new Error('Das ist ein Error aus FetchComments :' + response.error.message);
+//         }
 
-        console.log("Fetched comments:", response.data);
-        comments.push(...response.data);
+//         console.log("Fetched comments:", response.data);
+//         comments.push(...response.data);
 
-    } catch (error) {
-        console.error("(Aus catch) Error fetching comments:", error);
-    }
-}
-const fetchComments = async () => {
-    try {
-        const response = await supabase.from('comments').select();
+//     } catch (error) {
+//         console.error("(Aus catch) Error fetching comments:", error);
+//     }
+// }
+// const fetchComments = async () => {
+//     try {
+//         const response = await supabase.from('comments').select();
 
-        if(response.error) {
-            throw new Error('Das ist ein Error aus FetchComments :' + error.message);
-        }
+//         if(response.error) {
+//             throw new Error('Das ist ein Error aus FetchComments :' + response.error.message);
+//         }
 
-        console.log("Fetched comments:", response.data);
+//         console.log("Fetched comments:", response.data);
 
-    } catch (error) {
-        console.error("(Aus catch) Error fetching comments:", error);
-    }
-}
+//     } catch (error) {
+//         console.error("(Aus catch) Error fetching comments:", error);
+//     }
+// }
+
+// const sendComment = async (user) => {
+    
+//     if(!message.trim()) {
+//         return;
+//     }
+    
+//     try {
+//         const {data, error} = await supabase.from('comments').insert({
+//             comment: message,
+//             username: user
+//         });
+
+//         if(error) {
+//             throw new Error('Das ist ein Error aus sendMessage :' + error.message);
+//         }
+//         console.log("Message sent:", data);
+       
+//     } catch (error) {
+//         console.error("Error sending message:", error);
+//     }
+//      message = "";
+//     //  comments.length = 0;
+//     comments = [];
+//     await getDatabaseDataOrDummy();
+// }
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -75,8 +103,8 @@ const fetchComments = async () => {
             </div>
         </div>
         <div class="input-wrapper">
-            <input type="text" placeholder="Tippe was ein..." />
-            <button class="" onclick={sendComment}>icon</button>
+            <!-- <input type="text" placeholder="Tippe was ein..." bind:value={message}/> -->
+            <!-- <button class="" onclick={() => sendComment('Jakosssss')}>icon</button> -->
         </div>
     </div>
 </div>
