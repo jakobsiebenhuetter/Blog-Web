@@ -86,10 +86,10 @@
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
-<div class="modal-backdrop" onclick={closeCommentWindow}>
-    <div class="comment-window" onclick={(e)=> {e.stopPropagation()}}>
+<!-- <div class="modal-backdrop" onclick={closeCommentWindow}> -->
+    <!-- <div class="comment-window" onclick={(e)=> {e.stopPropagation()}}>
     <div class="close-button-wrapper">
-        <Button class="close-button" text="X" circle=true handleClick={closeCommentWindow}></Button>
+    <Button class="close-button" text="X" circle=true handleClick={closeCommentWindow}></Button> 
     </div>
         <div class="chat-wrapper">
             <div class="chat">
@@ -103,11 +103,11 @@
             </div>
         </div>
         <div class="input-wrapper">
-            <!-- <input type="text" placeholder="Tippe was ein..." bind:value={message}/> -->
-            <!-- <button class="" onclick={() => sendComment('Jakosssss')}>icon</button> -->
+            <input type="text" placeholder="Tippe was ein..." bind:value={message}/>
+             <button class="" onclick={() => sendComment('Jakosssss')}>icon</button> 
         </div>
     </div>
-</div>
+</div> -->
 
 <style>
 
