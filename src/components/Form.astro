@@ -1,0 +1,38 @@
+---
+
+---
+
+<form action="" method="post">
+    <div>
+        <p>
+            <label for="email">Email</label>
+        </p>
+        <input id="email" type="email" placeholder="Email">     
+        <p>
+            <label for="password">Passwort</label>
+        </p>
+        <input id="password" type="password" placeholder="password">
+    </div>
+    <button>Signup</button>
+</form>
+
+<script>
+import supabase from "../supabase/supabaseClient"
+
+const form = document.querySelector("form");
+form?.addEventListener("submit", signUp);
+
+async function signUp(e) {
+    e.preventDefault();
+    const {data, error} = await supabase.auth.signInAnonymously();
+    console.log(data)
+    window.location.href = 'http://localhost:4321/Blog-Web/blog/main';
+}
+</script>
+
+<style>
+
+    form {
+        background: yellowgreen;
+    }
+</style>

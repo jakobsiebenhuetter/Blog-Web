@@ -1,0 +1,38 @@
+---
+
+---
+
+<h1>Kommentiere</h1>
+<button id="logout">Logout</button>
+
+
+<script>
+import supabase from "../supabase/supabaseClient.js";
+const logoutButton = document.getElementById("logout");
+logoutButton?.addEventListener("click", logout);
+
+async function logout() {
+    const {error} = await supabase.auth.signOut();
+    if(error) {
+        console.error("Error logging out:", error);
+    } else {
+        console.log("User logged out successfully");
+        window.location.href = 'http://localhost:4321/Blog-Web/blog/main';
+    }
+}
+
+export async function getUserData() {
+    try {
+        const{data, error} = await supabase.auth.getSession();
+        if(data.session) {
+            const {data: userdata} = await supabase.from('comments').select('*');
+            console.dir(userdata);
+        }
+    } catch(error) {
+        console.error("Error fetching user data:", error);
+    }
+}
+
+getUserData();
+
+</script>
