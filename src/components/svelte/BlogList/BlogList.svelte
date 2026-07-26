@@ -1,5 +1,6 @@
 <script>
   import BlogCard from "../BlogCard/BlogCard.svelte";
+  import CommentWindow from "../CommentWindow/CommentWindow.svelte";
 
   import supabase from "../../../supabase/supabaseClient.js";
 
@@ -7,11 +8,20 @@
   let showCommentWindow = $state(false);
 
   
-  function openCommentWindow(e) {
+  async function openCommentWindow(e) {
     e.preventDefault();
     e.stopPropagation();
     checkIfUserExists();
+    await getComments();
     showCommentWindow = true;
+  }
+
+  async function getComments() {
+    const {data} = await supabase.auth.getSession();
+    if(data.session) {
+      const {data: commentsData} = await supabase.from('comments').select('*');
+      console.dir(commentsData)
+    }
   }
 
   async function checkIfUserExists() {
@@ -26,7 +36,7 @@
         redirectToLogin();
       } else {
         // console.log("User exists:", data.session.user);
-        redirecktCommentPage();
+        // redirectToBlog();
       }
 
       
@@ -40,8 +50,8 @@
     window.location.href = 'http://localhost:4321/Blog-Web/login';
   }
 
-  function redirecktCommentPage() {
-    window.location.href = 'http://localhost:4321/Blog-Web/comments-page';
+  function redirectToBlog() {
+    window.location.href = 'http://localhost:4321/Blog-Web/blog';
   }
 
   function closeCommentWindow() {
@@ -56,9 +66,9 @@
 
 </div>
 
-<!-- {#if showCommentWindow}
+{#if showCommentWindow}
   <CommentWindow closeCommentWindow={closeCommentWindow}/>
-{/if} -->
+{/if}
 
 <svelte:window
   onclick={() => {
