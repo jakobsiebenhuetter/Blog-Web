@@ -29,6 +29,12 @@ let disable = true;
   button?.addEventListener("click", signUp);
 
   async function signUp() {
+
+    const {data: session} = await supabase.auth.getSession();
+    if(session.session) {
+      console.log(session)
+      return;
+    }
     const { data, error } = await supabase.auth.signInAnonymously();
     console.log(data);
     const domain = window.location.origin
