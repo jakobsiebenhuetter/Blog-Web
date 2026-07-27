@@ -3,7 +3,7 @@ const {text} = Astro.props;
 let disable = true;
 ---
 
-<form>
+<div>
   {
     !disable && (
       <div>
@@ -19,7 +19,7 @@ let disable = true;
     )
   }
   <button>{text}</button>
-</form>
+</div>
 
 <script>
   import supabase from "../supabase/supabaseClient";
@@ -27,8 +27,7 @@ let disable = true;
   const button = document.querySelector("button");
   button?.addEventListener("click", signUp);
 
-  async function signUp(e: Event) {
-    e.preventDefault();
+  async function signUp() {
     const { data, error } = await supabase.auth.signInAnonymously();
     console.log(data);
     const domain = window.location.origin
