@@ -28,9 +28,35 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
           </li>
         ))
       }
+      <li>
+        <a id="logout-btn" href="">Logout</a>
+      </li>
     </ul>
   </nav>
 </header>
+
+<script>
+  /**
+   * ANCHOR TODO
+   */
+import supabase from "../supabase/supabaseClient";
+  const logoutBtn = document.querySelector('#logout-btn') as HTMLElement;
+  logoutBtn.style.display = 'none';
+    
+  const logOut = async (e: Event) => {
+    e.preventDefault();
+    await supabase.auth.signOut();
+    window.location.href = `${window.location.origin}/Blog-Web/blog/main`;
+  }
+
+  const {data} = await supabase.auth.getSession();
+  if(data.session) {
+    logoutBtn.style.display = '';
+    logoutBtn.addEventListener('click', logOut);
+  }
+
+
+</script>
 
 <style>
     header {

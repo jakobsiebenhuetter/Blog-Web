@@ -24,8 +24,8 @@ let disable = true;
 <script>
   import supabase from "../supabase/supabaseClient";
 
-  const form = document.querySelector("form");
-  form?.addEventListener("submit", signUp);
+  const button = document.querySelector("button");
+  button?.addEventListener("click", signUp);
 
   async function signUp(e: Event) {
     e.preventDefault();
