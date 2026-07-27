@@ -31,7 +31,8 @@ let disable = true;
     e.preventDefault();
     const { data, error } = await supabase.auth.signInAnonymously();
     console.log(data);
-    window.location.href = "http://localhost:4321/Blog-Web/blog/main";
+    const domain = window.location.origin
+    window.location.href = `${domain}/Blog-Web/blog/main`;
   }
 </script>
 
