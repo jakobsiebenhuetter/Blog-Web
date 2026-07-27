@@ -15,6 +15,9 @@ export default defineConfig({
   base: '/Blog-Web',
 
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      sourcemap: true
+    }
   }
 });
