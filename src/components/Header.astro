@@ -43,8 +43,11 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 
 <script>
   /**
-   * ANCHOR TODO
+   * ANCHOR TODO Animationen zum Hamburger Button hinzufügen
+   * ANCHOR TODO Logout Button als Svelte Komponente umbauen
+   * ANCHOR TODO Supabase - wegkommen von SignInAnonymously
    */
+
 import supabase from "../supabase/supabaseClient";
   const logoutBtn = document.querySelector('#logout-btn') as HTMLElement;
   logoutBtn.style.display = 'none';
@@ -83,9 +86,7 @@ import supabase from "../supabase/supabaseClient";
   if(data.session) {
     logoutBtn.style.display = '';
   }
-
-
-
+  
 </script>
 
 <style>
