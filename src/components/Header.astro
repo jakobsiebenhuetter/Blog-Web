@@ -1,4 +1,5 @@
 ---
+import LogoutButton from './svelte/LogoutButton/LogoutButton.svelte';
 import type { ILink } from "../types";
 
 interface Props {
@@ -30,7 +31,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
         ))
       }
       <li>
-        <a id="logout-btn" href="">Logout</a>
+        <LogoutButton client:load/>
       </li>
     </ul>
     <div class="hamburger-btn">
@@ -44,21 +45,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 <script>
   /**
    * ANCHOR TODO Animationen zum Hamburger Button hinzufügen
-   * ANCHOR TODO Logout Button als Svelte Komponente umbauen
    * ANCHOR TODO Supabase - wegkommen von SignInAnonymously
    */
-
-import supabase from "../supabase/supabaseClient";
-  const logoutBtn = document.querySelector('#logout-btn') as HTMLElement;
-  logoutBtn.style.display = 'none';
-    
-  const logOut = async (e: Event) => {
-    e.preventDefault();
-    await supabase.auth.signOut();
-    window.location.href = `${window.location.origin}/Blog-Web/blog/main`;
-  }
-
-  logoutBtn.addEventListener('click', logOut);
   
   const btn = document.querySelector('.hamburger-btn')! as HTMLElement;
 
@@ -82,11 +70,6 @@ import supabase from "../supabase/supabaseClient";
     }
   }
 
-  const {data} = await supabase.auth.getSession();
-  if(data.session) {
-    logoutBtn.style.display = '';
-  }
-  
 </script>
 
 <style>

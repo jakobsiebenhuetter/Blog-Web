@@ -1,11 +1,10 @@
 <script>
-let { handleClick, text = '', circle = false } = $props();
+let {  handleClick = null, text = '', circle = false } = $props();
 
 
 </script>
 
-<button id="btn" onclick={handleClick} class={circle ? 'circle': ''}><div class="text">{text.toUpperCase()}</div></button>
-
+<button onclick={handleClick} class={circle ? 'circle': ''}><div class="text">{text.toUpperCase()}</div></button>
 
 <style>
 
@@ -20,7 +19,7 @@ let { handleClick, text = '', circle = false } = $props();
       cursive;
     /* font-size: 1.2em; */
   }
-  #btn {
+  button {
     display: flex;
 
     justify-content: center;
@@ -34,16 +33,16 @@ let { handleClick, text = '', circle = false } = $props();
     width: 100%;
   }
 
-  #btn:hover {
+  button:hover {
     background-color: #7e8081;
   }
 
-  #btn.circle {
+  button.circle {
     font-size: 12px;
     border-radius: 50%;
   }
 
-   #btn.circle:hover {
+   button.circle:hover {
     background-color: red;
   }
 
