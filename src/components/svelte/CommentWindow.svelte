@@ -1,8 +1,8 @@
 <script>
-import supabase from "../../../supabase/supabaseClient";
+import supabase from "../../supabase/supabaseClient";
 
 import { onMount } from "svelte";
-import Button from "../Button/Button.svelte";
+import Button from "./Button.svelte";
 
 const {closeCommentWindow} = $props();
 let comments = $state([]);

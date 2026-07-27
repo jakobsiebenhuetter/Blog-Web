@@ -1,6 +1,6 @@
 <script>
-import supabase from "../../../supabase/supabaseClient";
-import Button from "../Button/Button.svelte";
+import supabase from "../../supabase/supabaseClient";
+import Button from "./Button.svelte";
 import {onMount} from 'svelte';
 
 let show = $state(false);

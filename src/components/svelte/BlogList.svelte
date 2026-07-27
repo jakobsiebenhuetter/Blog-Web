@@ -1,8 +1,8 @@
 <script>
-  import BlogCard from "../BlogCard/BlogCard.svelte";
-  import CommentWindow from "../CommentWindow/CommentWindow.svelte";
+  import BlogCard from "./BlogCard.svelte";
+  import CommentWindow from "./CommentWindow.svelte";
 
-  import supabase from "../../../supabase/supabaseClient.js";
+  import supabase from "../../supabase/supabaseClient.js";
 
   const {topics} = $props();
   let showCommentWindow = $state(false);
@@ -43,7 +43,7 @@
       }
 
       return true;
-      
+
     } catch(error) {
       console.error("Error checking user existence:", error);
     }

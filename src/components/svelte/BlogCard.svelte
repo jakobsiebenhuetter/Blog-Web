@@ -1,5 +1,5 @@
 <script>
-import Button from "../Button/Button.svelte";
+import Button from "./Button.svelte";
 const {topic, handleClick} = $props();
 
 
