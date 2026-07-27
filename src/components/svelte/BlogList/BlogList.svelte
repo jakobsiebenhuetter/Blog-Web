@@ -11,9 +11,14 @@
   async function openCommentWindow(e) {
     e.preventDefault();
     e.stopPropagation();
-    checkIfUserExists();
-    await getComments();
-    showCommentWindow = true;
+
+    if(! await checkIfUserExists()) {
+      showCommentWindow = false;
+      return;
+    }
+      await getComments();
+      showCommentWindow = true;
+    
   }
 
   async function getComments() {
@@ -32,15 +37,13 @@
         throw new Error(error.message);
       }
 
-       if(!data.session) {
-        redirectToLogin();
-      } else {
-        // console.log("User exists:", data.session.user);
-        // redirectToBlog();
+      if(!data.session) {
+        // redirectToLogin();
+        return false;
       }
 
+      return true;
       
-
     } catch(error) {
       console.error("Error checking user existence:", error);
     }

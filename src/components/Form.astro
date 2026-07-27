@@ -1,38 +1,58 @@
 ---
-
+const {text} = Astro.props;
+let disable = true;
 ---
 
 <form action="" method="post">
-    <div>
+  {
+    !disable && (
+      <div>
         <p>
-            <label for="email">Email</label>
+          <label for="email">Email</label>
         </p>
-        <input id="email" type="email" placeholder="Email">     
+        <input id="email" type="email" placeholder="Email" />
         <p>
-            <label for="password">Passwort</label>
+          <label for="password">Passwort</label>
         </p>
-        <input id="password" type="password" placeholder="password">
-    </div>
-    <button>Signup</button>
+        <input id="password" type="password" placeholder="password" />
+      </div>
+    )
+  }
+  <button>{text}</button>
 </form>
 
 <script>
-import supabase from "../supabase/supabaseClient"
+  import supabase from "../supabase/supabaseClient";
 
-const form = document.querySelector("form");
-form?.addEventListener("submit", signUp);
+  const form = document.querySelector("form");
+  form?.addEventListener("submit", signUp);
 
-async function signUp(e) {
+  async function signUp(e: Event) {
     e.preventDefault();
-    const {data, error} = await supabase.auth.signInAnonymously();
-    console.log(data)
-    window.location.href = 'http://localhost:4321/Blog-Web/blog/main';
-}
+    const { data, error } = await supabase.auth.signInAnonymously();
+    console.log(data);
+    window.location.href = "http://localhost:4321/Blog-Web/blog/main";
+  }
 </script>
 
 <style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: yellowgreen;
+    padding: 12px;
+    margin: auto;
+    border-radius: 6px;
+    width: 400px;
+  }
 
-    form {
-        background: yellowgreen;
-    }
+  form p {
+    margin: 6px;
+  }
+
+  button {
+    margin: 12px;
+  }
 </style>

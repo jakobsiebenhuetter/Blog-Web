@@ -5,11 +5,15 @@ import Sidebar from '../components/Sidebar.astro';
 
 import Footer from '../components/Footer.astro';
 import { headerProps, sidebarProps } from '../assets/data/dummyData/dummy';
+
 import type { MarkdownHeading } from 'astro';
+import { ClientRouter } from 'astro:transitions';
+
 import TSLogo from "../images/TS-logo.png";
 
 import TocSidebar from "../components/TocSidebar.astro";
 import type { ILink } from '../types';
+
 
 interface Props {
 	title: string;
@@ -38,6 +42,7 @@ const {
 		<meta name="generator" content={Astro.generator} />
 		<meta name="description" content={description} />
 		<title>{title}</title>
+		<ClientRouter />
 	</head>
 	<body>
 		<Header links={headerLinks} />

@@ -32,9 +32,9 @@
         {
             "title": "Supabase - Ein Backend as a Service (BaaS) für moderne Webanwendungen",
             "description": "...",
-            "href": "#",
+            "href": "/Blog-Web/blog/articles/supabase",
             "date": "...",
-            "disabled": true
+            "disabled": false
         },
         {
             "title": "Was ist ein SMTP-Server",
@@ -50,6 +50,14 @@
             "href": "#",
             "date": "...",
             "disabled": true 
+        },
+
+        {
+            "title": "React.js - Ein Überblick über das beliebte JavaScript-Framework",
+            "description": "...",
+            "href": "#",
+            "date": "...",
+            "disabled": true
         }
     ]
 }
