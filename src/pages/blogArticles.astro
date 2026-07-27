@@ -1,0 +1,25 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '../layouts/Layout.astro';
+
+const blogArticles = await getCollection('blog');
+
+
+        // {
+        //     "name": "Content Collection",
+        //     "href": "/Blog-Web/blogArticles"
+        // }
+---
+
+<Layout>
+    {blogArticles.length > 0 ? 
+    blogArticles.map(article => (
+        <div>
+            <h2>{article.data.title}</h2>
+            <p>{article.data.description}</p>
+            <a href={`/Blog-Web/articles/${article.id}`}>{article.data.title}</a>
+        </div>
+    ))
+    : <p style="color: red;">Es sind noch keine Blogeinträge vorhanden.</p> } 
+</Layout>
+
