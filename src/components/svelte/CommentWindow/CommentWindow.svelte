@@ -104,7 +104,7 @@ const sendComment = async (user) => {
         </div>
         <div class="input-wrapper">
             <input type="text" placeholder="Tippe was ein..." bind:value={message}/>
-             <button class="" onclick={() => sendComment('Jakosssss')}>icon</button> 
+             <button class="" onclick={() => sendComment('Ein Unbekannter')}>Los</button> 
         </div>
     </div>
 </div>
