@@ -11,7 +11,8 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
 
 <header>
   <nav>
-    <ul>
+    <div class="placeholder"></div>
+    <ul class="nav-links">
         <li class="icon">
           <?xml version="1.0" encoding="utf-8"?><!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
           <svg width="34px" height="34px" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -32,6 +33,11 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
         <a id="logout-btn" href="">Logout</a>
       </li>
     </ul>
+    <div class="hamburger-btn">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
   </nav>
 </header>
 
@@ -49,11 +55,35 @@ import supabase from "../supabase/supabaseClient";
     window.location.href = `${window.location.origin}/Blog-Web/blog/main`;
   }
 
+  logoutBtn.addEventListener('click', logOut);
+  
+  const btn = document.querySelector('.hamburger-btn')! as HTMLElement;
+
+  const menu = document.querySelector('.nav-links')!;
+
+  const showMenu = () => {
+    menu.classList.remove('hide');
+    menu.classList.add('show');
+  }
+
+  const hideMenu = () => {
+    menu.classList.remove('show')
+    menu.classList.add('hide');
+  }
+
+  btn.onclick = () => {
+    if(!menu.classList.contains('show')) {
+      showMenu();
+    } else {
+      hideMenu();
+    }
+  }
+
   const {data} = await supabase.auth.getSession();
   if(data.session) {
     logoutBtn.style.display = '';
-    logoutBtn.addEventListener('click', logOut);
   }
+
 
 
 </script>
@@ -77,6 +107,7 @@ import supabase from "../supabase/supabaseClient";
 
     ul {
         display: flex;
+        flex-direction: row;
         align-items: center;
         justify-content: center;
       }
@@ -94,6 +125,62 @@ import supabase from "../supabase/supabaseClient";
     li > a.active {
       color: #000;
       font-weight: 500;
+    }
+
+    @media(max-width: 767px) {
+      header {
+        display: block;
+        width: 100%;
+        height: auto;
+        padding: 12px;
+      }
+
+      nav {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+      }
+
+      .placeholder {
+        width: 30px;
+      }
+
+      ul {
+        flex-direction: column;
+        margin: 0;
+        padding: 0;
+      }
+
+      ul > li {
+        margin: 4px;
+      }
+      .nav-links {
+        display: none;
+      }
+
+      .nav-links.show {
+        display: flex;
+      }
+
+      .nav-links.hide {
+        display: none;
+      }
+
+      .hamburger-btn {
+        display: flex;
+        flex-direction: column;
+        background-color: #666;
+        border-radius: 6px;
+        padding: 3px;
+        height: 30px;
+      }
+
+      .hamburger-btn span {
+        background-color: whitesmoke;
+        width: 30px;
+        height: 2px;
+        margin: 3px;
+      }
     }
     
     @media (prefers-color-scheme: dark) {
