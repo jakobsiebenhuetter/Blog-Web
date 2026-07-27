@@ -1,4 +1,5 @@
 ---
+import Button from './svelte/Button.svelte';
 const {text} = Astro.props;
 let disable = true;
 ---
@@ -29,15 +30,16 @@ let disable = true;
   button?.addEventListener("click", signUp);
 
   async function signUp() {
-
+    const domain = window.location.origin
+    
     const {data: session} = await supabase.auth.getSession();
     if(session.session) {
-      console.log(session)
+      console.log(session);
+      window.location.href = `${domain}/Blog-Web/blog/main`;
       return;
     }
     const { data, error } = await supabase.auth.signInAnonymously();
     console.log(data);
-    const domain = window.location.origin
     window.location.href = `${domain}/Blog-Web/blog/main`;
   }
 </script>

@@ -5,14 +5,18 @@ import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
+
   integrations: [svelte({emitCss: false})],
 
+
+  
   devToolbar: {
       enabled: false
   },
 
   site: 'https://jakobsiebenhuetter.github.io',
   base: '/Blog-Web',
+
 
   vite: {
     plugins: [tailwindcss()],
