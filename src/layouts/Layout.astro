@@ -51,6 +51,7 @@ const {
 			<div class="main-scroll">
 				<main class="hero">
 					<img src={TSLogo.src} alt="TypeScript Logo" />
+					<h1>{title}</h1>
 					<slot />
 					<Footer />
 				</main>
@@ -75,6 +76,14 @@ const {
 		flex-direction: column;
 	}
 
+	/* main {
+		display: flex;
+		flex-direction: column;
+	} */
+
+	main > h1 {
+		text-align: center;
+	}
 	.columns {
 		flex: 1;
 		display: flex;
