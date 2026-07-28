@@ -1,28 +1,46 @@
 <script>
 import supabase from "../../supabase/supabaseClient";
+
+let { mode = 'login'} = $props();
 let email = $state('');
 let password = $state('');
 let infomessage = $state('');
 
-$inspect(email);
-$inspect(password);
 
 async function signup(event) {
     event.preventDefault();
-    if(validate(email) && validate(password)) {
 
-        const {data, error} = await supabase.auth.signUp(
-            {
+    if(isValid(email) && isValid(password)) {
+
+        const {data, error} = await supabase.auth.signUp({
                 email: email,
                 password: password
-            }
-        );
+            });
         
+        if(error) {
+            infomessage = error.message;
+        } else {
+            infomessage = '';
+            redirect('blog/main');
+        }
+    }
+    reset();
+}
+
+async function login(event) {
+    event.preventDefault();
+    if(isValid(email) && isValid(password)) {
+        const {data, error} = await supabase.auth.signInWithPassword({
+            email: email,
+            password: password
+        });
+
         if(error) {
             infomessage = error.message;
         } else {
             console.log(data);
             infomessage = '';
+            redirect('blog/main');
         }
     }
     reset();
@@ -41,7 +59,7 @@ function passwordChangeHandle(event) {
     password = event.target.value;
 }
 
-function validate(value) {
+function isValid(value) {
     if(!value.trim().length) {
         infomessage = 'Bitte etwas eingeben';
         return false;
@@ -49,9 +67,18 @@ function validate(value) {
     return true;
 }
 
+function redirect(pathName) {
+    if(pathName) {
+        window.location.href = `${window.location.origin}/Blog-Web/${pathName}`;
+    } else {
+        console.log('Pfadname invalid')
+    }
+
+}
+
 </script>
 
-<form onsubmit={signup} onreset={reset}>
+<form onsubmit={mode === 'signup' ? signup : login} onreset={reset}>
     <label for="email">Email</label>
     <p>
         <input id="email" type="email" bind:value={email} onchange={emailChangeHandle}>
