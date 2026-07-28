@@ -5,6 +5,10 @@ import {onMount} from 'svelte';
 
 let show = $state(false);
 
+onMount(async () => {
+   await checkSession()
+});
+
 async function logout() {
     try {
         const { data, error } = await supabase.auth.signOut();
@@ -17,7 +21,6 @@ async function logout() {
     }
     console.log('Erfolgreich ausgeloggt')
     show = false;
-    window.location.href = `${window.location.origin}/Blog-Web/blog/main`
 }
 
 async function checkSession() {
@@ -29,9 +32,7 @@ async function checkSession() {
         show = false;
     }
 }
-onMount(async () => {
-   await checkSession()
-});
+
 </script>
 
 {#if show}
