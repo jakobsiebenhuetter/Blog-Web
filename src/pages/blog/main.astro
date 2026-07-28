@@ -7,11 +7,15 @@ import {topics} from "../../assets/data/blog/blog.json"; // interessant der TS c
 const blogTopics: IBlogCardProps[] = topics;
 ---
 
-<Layout title="Blog" description="Hier findest du alle Blogeinträge.">
-  <h1>Blog</h1>
-  <ul>
-    {blogTopics.length === 0 ? <p style="color: red;">Es sind noch keine Blogeinträge vorhanden.</p> : <BlogList topics={blogTopics} client:load></BlogList> }
-  </ul>
+<Layout
+  title="Blog"
+  description="Hier findest du alle Blogeinträge.">
+    <ul>
+      {blogTopics.length === 0 ? <p style="color: red;">
+          Es sind noch keine Blogeinträge vorhanden.
+          </p> : <BlogList topics={blogTopics} client:load />
+      }
+    </ul>
 </Layout>
 
 <style>
