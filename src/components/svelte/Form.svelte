@@ -7,9 +7,9 @@ let infomessage = $state('');
 $inspect(email);
 $inspect(password);
 
-function signup(event) {
+async function signup(event) {
     event.preventDefault();
-    const {data, error} = supabase.auth.signUp(
+    const {data, error} = await supabase.auth.signUp(
         {
             email: email,
             password: password
@@ -21,6 +21,13 @@ function signup(event) {
     } else {
         console.log(data);
     }
+    email = '';
+    password = '';
+}
+
+function reset() {
+    email = '';
+    password = '';
 }
 
 function emailChangeHandle(event) {
@@ -32,7 +39,7 @@ function passwordChangeHandle(event) {
 }
 </script>
 
-<form onsubmit={signup}>
+<form onsubmit={signup} onreset={reset}>
     <p>
         <label for="email">Email</label>
         <input id="email" type="email" bind:value={email} onchange={emailChangeHandle}>
