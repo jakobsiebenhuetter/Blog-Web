@@ -1,5 +1,6 @@
 <script>
 import supabase from "../../supabase/supabaseClient";
+import {redirect} from "../../util/util.ts";
 
 let { mode = 'login'} = $props();
 let email = $state('');
@@ -65,15 +66,6 @@ function isValid(value) {
         return false;
     }
     return true;
-}
-
-function redirect(pathName) {
-    if(pathName) {
-        window.location.href = `${window.location.origin}/Blog-Web/${pathName}`;
-    } else {
-        console.log('Pfadname invalid')
-    }
-
 }
 
 </script>
