@@ -36,10 +36,5 @@ async function checkSession() {
 </script>
 
 {#if show}
-<Button handleClick={logout} text="Logout"></Button>
+<Button handleClick={logout} text="Abmelden"></Button>
 {/if}
-
-
-<style>
-
-</style>

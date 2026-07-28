@@ -1,31 +1,18 @@
 <script>
 let {  handleClick = null, text = '', circle = false } = $props();
-
-
 </script>
 
-<button onclick={handleClick} class={circle ? 'circle': ''}><div class="text">{text.toUpperCase()}</div></button>
+<button onclick={handleClick} class={circle ? 'circle': ''}>{text}</button>
 
 <style>
 
-  div.text {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: goldenrod;
-    font-family:
-      Comic Sans MS,
-      cursive;
-    /* font-size: 1.2em; */
-  }
   button {
+    font-family: ui-monospace, "Cascadia Code", Consolas, monospace;;
     display: flex;
-
     justify-content: center;
     background-color: transparent;
     align-items: center;
-    color: white;
+    color: goldenrod;
     border: none;
     font-size: 16px;
     cursor: pointer;
