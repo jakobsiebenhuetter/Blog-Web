@@ -1,12 +1,76 @@
 <script>
+import supabase from "../../supabase/supabaseClient";
+let email = $state('');
+let password = $state('');
+let infomessage = $state('');
 
+$inspect(email);
+$inspect(password);
+
+function signup(event) {
+    event.preventDefault();
+    const {data, error} = supabase.auth.signUp(
+        {
+            email: email,
+            password: password
+        }
+    );
+
+    if(error) {
+        console.log(error);
+    } else {
+        console.log(data);
+    }
+}
+
+function emailChangeHandle(event) {
+    email = event.target.value;
+}
+
+function passwordChangeHandle(event) {
+    password = event.target.value;
+}
 </script>
 
-<form>
-
+<form onsubmit={signup}>
+    <p>
+        <label for="email">Email</label>
+        <input id="email" type="email" bind:value={email} onchange={emailChangeHandle}>
+    </p>
+    <p>
+        <label for="password">Password</label>
+        <input id="password" type="password" bind:value={password} onchange={passwordChangeHandle}>
+    </p>
+    <div class="btn-wrapper">
+        <button type="reset">Reset</button>
+        <button type="submit">Submit</button>
+    </div>
 </form>
 
 
 <style>
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: yellowgreen;
+    padding: 12px;
+    margin: auto;
+    border-radius: 6px;
+    width: 30%;
+    min-width: 100px;
+  }
 
+  .btn-wrapper {
+    display: inline-flex;
+  }
+
+  form p {
+    margin: 6px;
+  }
+
+  button {
+    margin: 12px;
+  }
 </style>
