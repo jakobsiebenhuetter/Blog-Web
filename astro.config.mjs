@@ -1,7 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import svelte from '@astrojs/svelte';
-import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,12 +15,4 @@ export default defineConfig({
 
   site: 'https://jakobsiebenhuetter.github.io',
   base: '/Blog-Web',
-
-
-  vite: {
-    plugins: [tailwindcss()],
-    build: {
-      sourcemap: true
-    }
-  }
 });
