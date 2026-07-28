@@ -7,6 +7,8 @@ let email = $state('');
 let password = $state('');
 let infomessage = $state('');
 
+$inspect(email);
+$inspect(password);
 
 async function signup(event) {
     event.preventDefault();
@@ -73,11 +75,11 @@ function isValid(value) {
 <form onsubmit={mode === 'signup' ? signup : login} onreset={reset}>
     <label for="email">Email</label>
     <p>
-        <input id="email" type="email" bind:value={email} onchange={emailChangeHandle}>
+        <input id="email" type="email" bind:value={email}>
     </p>
     <label for="password">Password</label>
     <p>
-        <input id="password" type="password" bind:value={password} onchange={passwordChangeHandle}>
+        <input id="password" type="password" bind:value={password}>
     </p>
     <div class="btn-wrapper">
         <button type="reset">Reset</button>
