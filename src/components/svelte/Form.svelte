@@ -17,7 +17,7 @@ async function signup(event) {
     );
 
     if(error) {
-        console.log(error);
+        infomessage = error.message;
     } else {
         console.log(data);
     }
@@ -52,6 +52,11 @@ function passwordChangeHandle(event) {
         <button type="reset">Reset</button>
         <button type="submit">Submit</button>
     </div>
+
+    {#if infomessage}
+    <span>{infomessage}</span>
+    {/if}
+
 </form>
 
 
@@ -79,5 +84,10 @@ function passwordChangeHandle(event) {
 
   button {
     margin: 12px;
+  }
+
+  span {
+    font-size: small;
+    color: red;
   }
 </style>
