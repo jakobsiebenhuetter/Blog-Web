@@ -9,20 +9,23 @@ $inspect(password);
 
 async function signup(event) {
     event.preventDefault();
-    const {data, error} = await supabase.auth.signUp(
-        {
-            email: email,
-            password: password
-        }
-    );
+    if(validate(email) && validate(password)) {
 
-    if(error) {
-        infomessage = error.message;
-    } else {
-        console.log(data);
+        const {data, error} = await supabase.auth.signUp(
+            {
+                email: email,
+                password: password
+            }
+        );
+        
+        if(error) {
+            infomessage = error.message;
+        } else {
+            console.log(data);
+            infomessage = '';
+        }
     }
-    email = '';
-    password = '';
+    reset();
 }
 
 function reset() {
@@ -37,15 +40,24 @@ function emailChangeHandle(event) {
 function passwordChangeHandle(event) {
     password = event.target.value;
 }
+
+function validate(value) {
+    if(!value.trim().length) {
+        infomessage = 'Bitte etwas eingeben';
+        return false;
+    }
+    return true;
+}
+
 </script>
 
 <form onsubmit={signup} onreset={reset}>
+    <label for="email">Email</label>
     <p>
-        <label for="email">Email</label>
         <input id="email" type="email" bind:value={email} onchange={emailChangeHandle}>
     </p>
+    <label for="password">Password</label>
     <p>
-        <label for="password">Password</label>
         <input id="password" type="password" bind:value={password} onchange={passwordChangeHandle}>
     </p>
     <div class="btn-wrapper">
@@ -71,7 +83,19 @@ function passwordChangeHandle(event) {
     margin: auto;
     border-radius: 6px;
     width: 30%;
-    min-width: 100px;
+    min-width: 200px;
+  }
+
+
+  input {
+    border-radius: 6px;
+    border: 2px solid rgb(38, 255, 0);
+    padding: 4px;
+  }
+
+  input:focus {
+    outline: none;
+    border: 2px solid rgba(51, 199, 25, 0.94);
   }
 
   .btn-wrapper {
@@ -84,6 +108,23 @@ function passwordChangeHandle(event) {
 
   button {
     margin: 12px;
+    border-radius: 6px;
+    padding: 4px;
+    font: inherit;
+    font-size: medium;
+  }
+
+  
+  button:hover {
+    cursor: pointer;
+  }
+
+  button[type="reset"] {
+    background-color: grey;
+  }
+
+  button[type="submit"] {
+    background-color: red;
   }
 
   span {
