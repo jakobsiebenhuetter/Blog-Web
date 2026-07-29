@@ -34,11 +34,11 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
         <LogoutButton client:load/>
       </li>
     </ul>
-    <div class="hamburger-btn">
+    <button class="hamburger-btn">
       <span></span>
       <span></span>
       <span></span>
-    </div>
+    </button>
   </nav>
 </header>
 
@@ -111,6 +111,10 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
       font-weight: 500;
     }
 
+    .hamburger-btn {
+      display: none;
+    }
+
     @media(max-width: 767px) {
       header {
         display: block;
@@ -157,6 +161,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
         border-radius: 6px;
         padding: 3px;
         height: 30px;
+        border: none;
       }
 
       .hamburger-btn span {
