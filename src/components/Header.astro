@@ -155,20 +155,44 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
       }
 
       .hamburger-btn {
-        display: flex;
-        flex-direction: column;
+        display: block;
+        position: relative;
         background-color: #666;
         border-radius: 6px;
         padding: 3px;
-        height: 30px;
+        height: 44px;
+        width: 40px;
         border: none;
       }
 
+      .hamburger-btn:hover {
+        cursor: pointer;
+        background-color: #808080;
+      }
+
       .hamburger-btn span {
+        position: absolute;
+        top: 0;
+        left: 0;
         background-color: whitesmoke;
         width: 30px;
         height: 2px;
         margin: 3px;
+      }
+
+      .hamburger-btn span:nth-child(1) {
+        top: 8px;
+        left: 2px;
+      }
+
+      .hamburger-btn span:nth-child(2) {
+        top: 18px;
+        left: 2px;
+      }
+
+      .hamburger-btn span:nth-child(3) {
+        top: 28px;
+        left: 2px;
       }
     }
     
