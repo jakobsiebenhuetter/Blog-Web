@@ -35,9 +35,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
       </li>
     </ul>
     <button class="hamburger-btn">
-      <span></span>
-      <span></span>
-      <span></span>
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"> <line x1="3" y1="4"  x2="21" y2="4" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="20" x2="21" y2="20" /></svg>
     </button>
   </nav>
 </header>
@@ -155,8 +153,9 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
       }
 
       .hamburger-btn {
-        display: block;
-        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         background-color: #666;
         border-radius: 6px;
         padding: 3px;
@@ -170,13 +169,13 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
         background-color: #808080;
       }
 
-      .hamburger-btn span {
+      /* .hamburger-btn span {
         position: absolute;
         top: 0;
         left: 0;
         background-color: whitesmoke;
         width: 30px;
-        height: 2px;
+        height: 3px;
         margin: 3px;
       }
 
@@ -193,7 +192,7 @@ const currentPath = Astro.url.pathname.replace(/\/+$/, "");
       .hamburger-btn span:nth-child(3) {
         top: 28px;
         left: 2px;
-      }
+      } */
     }
     
     @media (prefers-color-scheme: dark) {
