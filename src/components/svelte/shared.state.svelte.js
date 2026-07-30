@@ -7,4 +7,11 @@ export function getToastText() {
 
 export function setToastText(value) {
     text = value;
+    removeToast();
+}
+
+function removeToast() {
+    setTimeout(() => {
+        text = '';
+    }, 3000);
 }

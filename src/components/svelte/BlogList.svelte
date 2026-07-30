@@ -1,12 +1,25 @@
 <script>
+import {onMount} from 'svelte';
   import BlogCard from "./BlogCard.svelte";
   import CommentWindow from "./CommentWindow.svelte";
-
+  import {setToastText} from "./shared.state.svelte.js";
   import supabase from "../../supabase/supabaseClient.js";
 
   const {topics} = $props();
   let showCommentWindow = $state(false);
 
+  onMount(() => {
+    async function checkUserSession() {
+      if(await checkIfUserExists())
+      setToastText('User exists');
+    }
+
+    checkUserSession();
+
+    return () => {
+      console.dir("BlogList unmounted");
+    };
+  });
   
   async function openCommentWindow(e) {
     e.preventDefault();
@@ -41,7 +54,6 @@
         // redirectToLogin();
         return false;
       }
-
       return true;
 
     } catch(error) {

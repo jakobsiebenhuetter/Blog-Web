@@ -3,7 +3,6 @@ import supabase from "../../supabase/supabaseClient";
 
 import { onMount } from "svelte";
 import Button from "./Button.svelte";
-import {setToastText} from "./shared.state.svelte.js";
 
 const {closeCommentWindow} = $props();
 let comments = $state([]);
@@ -17,18 +16,17 @@ const dummyComments = [
     
 onMount(() => {
     // fetchComments();
-    loading = "Loading ..."
+    loading = "Loading ...";
+
     const fetchData = async () => {
         await getDatabaseDataOrDummy();
     };
 
     fetchData();
 
-    setToastText('Kommentare erfolgreich geladen');
     loading = "";
 
     return () => {
-        setToastText('');
         console.dir("CommentWindow unmounted");
     }
 });
