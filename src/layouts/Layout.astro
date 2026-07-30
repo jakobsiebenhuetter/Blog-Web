@@ -12,6 +12,7 @@ import { ClientRouter } from 'astro:transitions';
 import TSLogo from "../images/TS-logo.png";
 
 import TocSidebar from "../components/TocSidebar.astro";
+import Toast from "../components/svelte/Toast.svelte";
 import type { ILink } from '../types';
 
 
@@ -48,6 +49,8 @@ const {
 		<Header links={headerLinks} />
 		<div class="columns">
 			<Sidebar links={sidebarLinks} />
+			<Toast client:load></Toast>
+			<Toast client:load text="Hallo Welt :-)!"></Toast>
 			<div class="main-scroll">
 				<main class="hero">
 					<img src={TSLogo.src} alt="TypeScript Logo" />
