@@ -91,6 +91,16 @@ const sendComment = async (user) => {
     comments = [];
     await getDatabaseDataOrDummy();
 }
+
+ function transformDate(date) {
+    const dateObj = new Date(date);
+     return dateObj.toLocaleDateString('de-DE', {
+        year: 'numeric',
+        month: '2-digit',
+        day: '2-digit'
+    });
+ }
+
 </script>
 <!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- svelte-ignore a11y_no_static_element_interactions -->
@@ -106,7 +116,7 @@ const sendComment = async (user) => {
                 {:else}
                 {#each comments as comment}
                 <div class="comment">
-                    <div>{comment.created_at}</div>
+                    <div>{transformDate(comment.created_at)}</div>
                     <div class="comment">{comment.username}</div>
                     <div class="comment">{comment.comment}</div>
                 </div>
