@@ -10,8 +10,11 @@ import {onMount} from 'svelte';
 
   onMount(() => {
     async function checkUserSession() {
-      if(await checkIfUserExists())
-      setToastText('User exists');
+      if(await checkIfUserExists()) {
+        setToastText("Willkommen zurück!");
+      } else {
+        setToastText("Bitte logge dich ein, um Kommentare zu sehen.");
+      }
     }
 
     checkUserSession();
@@ -29,18 +32,9 @@ import {onMount} from 'svelte';
       showCommentWindow = false;
       return;
     }
-      await getComments();
       showCommentWindow = true;
-    
   }
 
-  async function getComments() {
-    const {data} = await supabase.auth.getSession();
-    if(data.session) {
-      const {data: commentsData} = await supabase.from('comments').select('*');
-      console.dir(commentsData)
-    }
-  }
 
   async function checkIfUserExists() {
     try {

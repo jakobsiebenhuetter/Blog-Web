@@ -30,7 +30,7 @@
         border-radius: 10px;
         padding: 4px;
         width: 200px;
-        height: 50px;
+        min-height: 50px;
         flex-direction: row;
         justify-content: center;
         align-items: center;
