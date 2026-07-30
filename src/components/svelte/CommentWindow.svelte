@@ -1,9 +1,9 @@
 <script>
-//TODO - Hier noch einen Loading Spinner implementieren
 import supabase from "../../supabase/supabaseClient";
 
 import { onMount } from "svelte";
 import Button from "./Button.svelte";
+import {setToastText} from "./shared.state.svelte.js";
 
 const {closeCommentWindow} = $props();
 let comments = $state([]);
@@ -15,12 +15,22 @@ const dummyComments = [
     {username: "User2", comment: "This is another comment.", created_at: "2024-06-01 10:05"}
 ];
     
-onMount(async () => {
+onMount(() => {
     // fetchComments();
     loading = "Loading ..."
-    await getDatabaseDataOrDummy();
+    const fetchData = async () => {
+        await getDatabaseDataOrDummy();
+    };
+
+    fetchData();
+
+    setToastText('Kommentare erfolgreich geladen');
     loading = "";
-    return () => console.dir("CommentWindow unmounted");
+
+    return () => {
+        setToastText('');
+        console.dir("CommentWindow unmounted");
+    }
 });
 
 async function getDatabaseDataOrDummy(dummy = false) {
@@ -86,7 +96,8 @@ const sendComment = async (user) => {
     await getDatabaseDataOrDummy();
 }
 </script>
-
+<!-- svelte-ignore a11y_click_events_have_key_events -->
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="modal-backdrop" onclick={closeCommentWindow}>
     <div class="comment-window" onclick={(e)=> {e.stopPropagation()}}>
         <div class="close-button-wrapper">
@@ -109,7 +120,7 @@ const sendComment = async (user) => {
         </div>
         <div class="input-wrapper">
             <input type="text" placeholder="Tippe was ein..." bind:value={message}/>
-            <button class="" onclick={() => sendComment('Ein Unbekannter')}>Los</button> 
+            <button onclick={() => sendComment('Ein Unbekannter')}>Los</button> 
         </div>
     </div>
 </div>

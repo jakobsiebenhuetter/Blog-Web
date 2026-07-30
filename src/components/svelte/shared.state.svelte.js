@@ -1,5 +1,5 @@
 
-let text = $state('ewr');
+let text = $state('');
 
 export function getToastText() {
     return text;

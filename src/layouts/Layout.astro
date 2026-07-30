@@ -49,8 +49,6 @@ const {
 		<Header links={headerLinks} />
 		<div class="columns">
 			<Sidebar links={sidebarLinks} />
-			<Toast client:load></Toast>
-			<Toast client:load text="Hallo Welt :-)!"></Toast>
 			<div class="main-scroll">
 				<main class="hero">
 					<img src={TSLogo.src} alt="TypeScript Logo" />
@@ -61,6 +59,7 @@ const {
 				{headings && headings.length ? <TocSidebar items={headings} /> : null}
 			</div>
 		</div>
+		<Toast client:load></Toast>
 	</body>
 </html>
 
