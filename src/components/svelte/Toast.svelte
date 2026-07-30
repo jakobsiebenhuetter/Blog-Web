@@ -24,16 +24,18 @@
 
     .toast {
         position: fixed;
+        z-index: 3000;
+        text-align: center;
         top: 100px;
         right: calc(50% - 100px);
         display: flex;
+        justify-content: center;
+        align-items: center;
         border-radius: 10px;
         padding: 4px;
         width: 200px;
         min-height: 50px;
         flex-direction: row;
-        justify-content: center;
-        align-items: center;
         background-color: rgb(143, 143, 247);
     }
 

@@ -15,8 +15,6 @@ import {onMount} from 'svelte';
           setToastText("Du bist eingeloggt und kannst kommentieren.");
           localStorage.removeItem('logedin_init');
         }
-      } else {
-        setToastText("Bitte logge dich ein, um Kommentare zu sehen.");
       }
     }
 
@@ -33,6 +31,7 @@ import {onMount} from 'svelte';
 
     if(! await checkIfUserExists()) {
       showCommentWindow = false;
+      setToastText("Bitte melde dich an");
       return;
     }
       showCommentWindow = true;

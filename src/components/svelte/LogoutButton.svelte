@@ -2,7 +2,7 @@
 import supabase from "../../supabase/supabaseClient";
 import Button from "./Button.svelte";
 import {onMount} from 'svelte';
-
+import {setToastText} from "./shared.state.svelte.js";
 let show = $state(false);
 
 onMount(async () => {
@@ -20,12 +20,12 @@ async function logout() {
         return;
     }
     console.log('Erfolgreich ausgeloggt')
+    setToastText("Du hast dich erfolgreich abgemeldet.");
     show = false;
 }
 
 async function checkSession() {
     const {data} = await supabase.auth.getSession();
-    console.log(data.session);
     if(data.session) {
         show = true;
     } else {
