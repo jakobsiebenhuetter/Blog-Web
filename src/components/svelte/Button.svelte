@@ -1,8 +1,8 @@
 <script>
-let {  handleClick = null, text = '', circle = false } = $props();
+let {  handleClick = null, text = '', classes } = $props();
 </script>
 
-<button onclick={handleClick} class={circle ? 'circle': ''}>{text}</button>
+<button onclick={handleClick} class={classes}>{text}</button>
 
 <style>
 
@@ -32,6 +32,5 @@ let {  handleClick = null, text = '', circle = false } = $props();
    button.circle:hover {
     background-color: red;
   }
-
 
 </style>

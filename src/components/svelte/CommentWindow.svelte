@@ -1,4 +1,5 @@
 <script>
+//TODO - Hier noch einen Loading Spinner implementieren
 import supabase from "../../supabase/supabaseClient";
 
 import { onMount } from "svelte";
@@ -7,16 +8,18 @@ import Button from "./Button.svelte";
 const {closeCommentWindow} = $props();
 let comments = $state([]);
 let message = $state("");
+let loading = $state("");
 
 const dummyComments = [
     {username: "User1", comment: "This is a comment.", created_at: "2024-06-01 10:00"},
     {username: "User2", comment: "This is another comment.", created_at: "2024-06-01 10:05"}
 ];
     
-onMount(() => {
+onMount(async () => {
     // fetchComments();
-    getDatabaseDataOrDummy();
-    
+    loading = "Loading ..."
+    await getDatabaseDataOrDummy();
+    loading = "";
     return () => console.dir("CommentWindow unmounted");
 });
 
@@ -24,7 +27,6 @@ async function getDatabaseDataOrDummy(dummy = false) {
     if(dummy) // C++ Style :-)
     {
         console.log("Using dummy data for comments: ");
-        $inspect(comments);
         comments.push(...dummyComments);
         return;
     }
@@ -84,15 +86,17 @@ const sendComment = async (user) => {
     await getDatabaseDataOrDummy();
 }
 </script>
-<!-- svelte-ignore a11y_click_events_have_key_events -->
-<!-- svelte-ignore a11y_no_static_element_interactions -->
+
 <div class="modal-backdrop" onclick={closeCommentWindow}>
     <div class="comment-window" onclick={(e)=> {e.stopPropagation()}}>
-    <div class="close-button-wrapper">
-    <Button class="close-button" text="X" circle=true handleClick={closeCommentWindow}></Button> 
-    </div>
+        <div class="close-button-wrapper">
+            <Button class="close-button" text="X" circle=true handleClick={closeCommentWindow}></Button> 
+        </div>
         <div class="chat-wrapper">
-            <div class="chat">
+            <div class={{'chat': true, 'loading': loading}}>
+                {#if loading}
+                <div>{loading}</div>
+                {:else}
                 {#each comments as comment}
                 <div class="comment">
                     <div>{comment.created_at}</div>
@@ -100,15 +104,16 @@ const sendComment = async (user) => {
                     <div class="comment">{comment.comment}</div>
                 </div>
                 {/each}
+                {/if}
             </div>
         </div>
         <div class="input-wrapper">
             <input type="text" placeholder="Tippe was ein..." bind:value={message}/>
-             <button class="" onclick={() => sendComment('Ein Unbekannter')}>Los</button> 
+            <button class="" onclick={() => sendComment('Ein Unbekannter')}>Los</button> 
         </div>
     </div>
 </div>
-
+    
 <style>
 
   .modal-backdrop {
@@ -159,6 +164,12 @@ const sendComment = async (user) => {
     border-radius: 8px;
     padding: 10px;
     overflow-y: auto;
+}
+
+.chat.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .input-wrapper {

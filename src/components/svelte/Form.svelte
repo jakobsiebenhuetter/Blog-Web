@@ -1,4 +1,5 @@
 <script>
+//TODO - Cleanup Code
 import supabase from "../../supabase/supabaseClient";
 import {redirect} from "../../util/util.ts";
 
@@ -6,6 +7,7 @@ let { mode = 'login'} = $props();
 let email = $state('');
 let password = $state('');
 let infomessage = $state('');
+
 
 $inspect(email);
 $inspect(password);
@@ -31,6 +33,7 @@ async function signup(event) {
 }
 
 async function login(event) {
+    infomessage = 'Loading...'
     event.preventDefault();
     if(isValid(email) && isValid(password)) {
         const {data, error} = await supabase.auth.signInWithPassword({

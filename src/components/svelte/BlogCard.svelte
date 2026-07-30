@@ -2,7 +2,7 @@
 import Button from "./Button.svelte";
 const {topic, handleClick} = $props();
 
-
+//TODO - Wenn ein man nicht eingeloggt ist, dann soll beim versuch die Kommentarfunktion zu klicken, eine toastmessage bekommen, dass man sich zuerst einlogen soll
 </script>
 
 <li class={topic.disabled ? 'disabled blog-card' : 'blog-card'}>
@@ -13,7 +13,12 @@ const {topic, handleClick} = $props();
             <span>{topic.date}</span>
         </div>
         <div class="button-container">
+        <span class="desktop">
             <Button text='Kommentieren'  handleClick={(e) => handleClick(e)}></Button>
+        </span >
+            <span class="mobile">
+                <Button text='...'></Button>
+            </span>
         </div>
     </a>
 </li>
@@ -81,6 +86,24 @@ const {topic, handleClick} = $props();
         background-color: #e0e0e0;
         cursor: not-allowed;
         pointer-events: none;
+    }
+
+    .button-container .mobile {
+        display: none;
+    }
+
+    @media(max-width: 767px) {
+        li {
+            text-align: center;
+        }
+
+        .desktop {
+            display: none;
+        }
+
+        .button-container .mobile {
+            display: block;
+        }
     }
 </style>
 
