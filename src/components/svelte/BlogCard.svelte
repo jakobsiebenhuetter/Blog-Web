@@ -17,7 +17,7 @@ const {topic, handleClick} = $props();
             <Button text='Kommentieren'  handleClick={(e) => handleClick(e)}></Button>
         </span >
             <span class="mobile">
-                <Button text='...'></Button>
+                <Button text='...' handleClick={(e) => handleClick(e)}></Button>
             </span>
         </div>
     </a>
