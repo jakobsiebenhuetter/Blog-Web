@@ -8,10 +8,6 @@ let email = $state('');
 let password = $state('');
 let infomessage = $state('');
 
-
-$inspect(email);
-$inspect(password);
-
 async function signup(event) {
     event.preventDefault();
 
@@ -46,6 +42,7 @@ async function login(event) {
         } else {
             console.log(data);
             infomessage = '';
+            localStorage.setItem('logedin_init', 'true');
             redirect('blog/main');
         }
     }

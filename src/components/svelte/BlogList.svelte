@@ -11,7 +11,10 @@ import {onMount} from 'svelte';
   onMount(() => {
     async function checkUserSession() {
       if(await checkIfUserExists()) {
-        setToastText("Willkommen zurück!");
+        if(localStorage.getItem('logedin_init') === 'true') {  
+          setToastText("Du bist eingeloggt und kannst kommentieren.");
+          localStorage.removeItem('logedin_init');
+        }
       } else {
         setToastText("Bitte logge dich ein, um Kommentare zu sehen.");
       }
