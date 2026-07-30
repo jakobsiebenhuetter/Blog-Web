@@ -14,8 +14,7 @@
 </script>
 
 {#if getToastText()}
-<div class={{"toast": true, "show": getToastText() !== '',
- "hide": getToastText() === ''}}
+<div class={{"toast": true}}
  transition:fly={{ y: -20, duration: 300, easing: cubicOut }}>
     <p>{getToastText()}</p>
 </div>
@@ -24,10 +23,9 @@
 <style>
 
     .toast {
-        opacity: 0;
         position: fixed;
         top: 100px;
-        right: 100px;
+        right: calc(50% - 100px);
         display: flex;
         border-radius: 10px;
         padding: 4px;
@@ -39,13 +37,4 @@
         background-color: rgb(143, 143, 247);
     }
 
-    .toast.hide {
-        display: none;
-        opacity: 0;
-    }
-
-    .toast.show {
-        display: flex;
-        opacity: 1;
-    }
 </style>

@@ -16,15 +16,13 @@ const dummyComments = [
     
 onMount(() => {
     // fetchComments();
-    loading = "Loading ...";
-
     const fetchData = async () => {
+        loading = "Loading ...";
         await getDatabaseDataOrDummy();
+        loading = "";
     };
 
     fetchData();
-
-    loading = "";
 
     return () => {
         console.dir("CommentWindow unmounted");
