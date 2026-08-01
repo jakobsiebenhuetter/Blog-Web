@@ -4,7 +4,7 @@ import supabase from "../../supabase/supabaseClient";
 import { onMount } from "svelte";
 import Button from "./Button.svelte";
 
-const {closeCommentWindow} = $props();
+const {closeCommentWindow, blogid, userid} = $props();
 let comments = $state([]);
 let message = $state("");
 let loading = $state("");
@@ -38,7 +38,7 @@ async function getDatabaseDataOrDummy(dummy = false) {
     }
     
     try {
-        const response = await supabase.from('comments').select();
+        const response = await supabase.from('comments').select().eq('blog_id', blogid);
 
         if(response.error) {
             throw new Error('Das ist ein Error aus FetchComments :' + response.error.message);
@@ -66,7 +66,7 @@ const fetchComments = async () => {
     }
 }
 
-const sendComment = async (user) => {
+const sendComment = async () => {
     
     if(!message.trim()) {
         return;
@@ -75,8 +75,9 @@ const sendComment = async (user) => {
     try {
         const {data, error} = await supabase.from('comments').insert({
             comment: message,
-            username: user
-        });
+            user_id: userid,
+            blog_id: blogid,
+        }).eq('blog_id', blogid);
 
         if(error) {
             throw new Error('Das ist ein Error aus sendMessage :' + error.message);
@@ -91,6 +92,12 @@ const sendComment = async (user) => {
     comments = [];
     await getDatabaseDataOrDummy();
 }
+
+function onEnter(event) {
+    if(event.key === "Enter") {
+        sendComment();
+    }
+};
 
  function transformDate(date) {
     const dateObj = new Date(date);
@@ -125,8 +132,8 @@ const sendComment = async (user) => {
             </div>
         </div>
         <div class="input-wrapper">
-            <input type="text" placeholder="Tippe was ein..." bind:value={message}/>
-            <button onclick={() => sendComment('Ein Unbekannter')}>Los</button> 
+            <input type="text" placeholder="Tippe was ein..." bind:value={message} onkeydown={onEnter}/>
+            <button onclick={sendComment}>Los</button> 
         </div>
     </div>
 </div>

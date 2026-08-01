@@ -6,6 +6,7 @@ export interface ILink {
 
 
 export interface IBlogCardProps {
+    id?: string;
     title: string;
     description: string;
     href: string;

@@ -6,7 +6,12 @@ import {onMount} from 'svelte';
   import supabase from "../../supabase/supabaseClient.js";
 
   const {topics} = $props();
-  let showCommentWindow = $state(false);
+  let windowState = $state(
+    {
+      blogId: null,
+      userId: null
+    }
+  );
 
   onMount(() => {
     async function checkUserSession() {
@@ -25,23 +30,23 @@ import {onMount} from 'svelte';
     };
   });
   
-  async function openCommentWindow(e) {
+  async function openCommentWindow(e, topicId) {
     e.preventDefault();
     e.stopPropagation();
 
     if(! await checkIfUserExists()) {
-      showCommentWindow = false;
+      windowState.blogId = null;
       setToastText("Bitte melde dich an");
       return;
     }
-      showCommentWindow = true;
+    windowState.blogId = topicId;
   }
 
 
   async function checkIfUserExists() {
     try {
       const {data, error} = await supabase.auth.getSession();
-
+      console.log("User session data:", data);
       if(error) {
         throw new Error(error.message);
       }
@@ -50,6 +55,7 @@ import {onMount} from 'svelte';
         // redirectToLogin();
         return false;
       }
+      windowState.userId = data.session.user.id;
       return true;
 
     } catch(error) {
@@ -66,19 +72,21 @@ import {onMount} from 'svelte';
   }
 
   function closeCommentWindow() {
-    showCommentWindow = false;
+    windowState.blogId = null;
   }
 </script>
 
 <div>
   {#each topics as topic}
-    <BlogCard topic={topic} handleClick={openCommentWindow}></BlogCard>
+  {#if topic.id}
+    <BlogCard topic={topic} handleClick={(event) => openCommentWindow(event, topic.id)}></BlogCard>
+    {/if}
   {/each}
 
 </div>
 
-{#if showCommentWindow}
-  <CommentWindow closeCommentWindow={closeCommentWindow}/>
+{#if windowState.blogId}
+  <CommentWindow blogid={windowState.blogId} userid={windowState.userId} closeCommentWindow={closeCommentWindow}/>
 {/if}
 
 <svelte:window
