@@ -8,6 +8,8 @@ let email = $state('');
 let password = $state('');
 let infomessage = $state('');
 
+//TODO - Einen Benutzernamen für die Anmeldung einführen, damit man nicht nur mit der Email-Adresse angemeldet ist. Dann kann man auch die Kommentare mit dem Benutzernamen versehen.
+
 async function signup(event) {
     event.preventDefault();
 

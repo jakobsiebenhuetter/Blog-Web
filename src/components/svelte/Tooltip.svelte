@@ -1,5 +1,4 @@
 <script>
-import { authStore } from "../../../stores/authStore";
 
 let { posX, posY, text = 'Jetzt registrieren' } = $props();
 
@@ -26,7 +25,6 @@ $effect(() => {
 });
 </script>
 
-{#if !$authStore}
     <div
         class="tooltip"
         style:left={posX + 'px'}
@@ -36,7 +34,6 @@ $effect(() => {
     >
         <a href={`${base}signup`}>{text}</a>
     </div>
-{/if}
 
 <style>
 .tooltip {
