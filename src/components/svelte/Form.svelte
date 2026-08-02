@@ -6,6 +6,7 @@ import {redirect} from "../../util/util.ts";
 let { mode = 'login'} = $props();
 let email = $state('');
 let password = $state('');
+let username = $state('');
 let infomessage = $state('');
 
 //TODO - Einen Benutzernamen für die Anmeldung einführen, damit man nicht nur mit der Email-Adresse angemeldet ist. Dann kann man auch die Kommentare mit dem Benutzernamen versehen.
@@ -13,17 +14,25 @@ let infomessage = $state('');
 async function signup(event) {
     event.preventDefault();
 
-    if(isValid(email) && isValid(password)) {
+    if(isValid(email) && isValid(password) && isValid(username)) {
 
+        // Hier noch checken ob es diesen usernamen schon gibt !!!
         const {data, error} = await supabase.auth.signUp({
                 email: email,
                 password: password
             });
+
+        // Hier noch ein Insert in die Tabelle "users" machen, um den Benutzernamen zu speichern. Dann kann man den Benutzernamen
         
         if(error) {
             infomessage = error.message;
         } else {
             infomessage = '';
+            const {data: userData, error: userError} = await supabase.from('users').insert({
+                username: username,
+                email: email,
+                user_id: data.user.id
+            });
             redirect('blog/main');
         }
     }
@@ -33,7 +42,17 @@ async function signup(event) {
 async function login(event) {
     infomessage = 'Loading...'
     event.preventDefault();
-    if(isValid(email) && isValid(password)) {
+    if(isValid(username) && isValid(password)) {
+        const {data: userData, error: userError} = await supabase.from('users').select('*').eq('username', username);
+        const userCredentials = userData[0];
+        console.log(userData);
+        if(userCredentials) {
+            email = userCredentials.email;
+        } else {
+            infomessage = 'Benutzer nicht gefunden, bitte registriere dich zuerst';
+            return;
+        }
+
         const {data, error} = await supabase.auth.signInWithPassword({
             email: email,
             password: password
@@ -75,10 +94,21 @@ function isValid(value) {
 </script>
 
 <form onsubmit={mode === 'signup' ? signup : login} onreset={reset}>
+    
+    {#if mode === 'signup'}
+    
     <label for="email">Email</label>
     <p>
         <input id="email" type="email" bind:value={email}>
     </p>
+
+    {/if}
+
+    <label for="username">Benutzername</label>
+    <p>
+        <input id="username" type="text" bind:value={username}>
+    </p>
+
     <label for="password">Password</label>
     <p>
         <input id="password" type="password" bind:value={password}>

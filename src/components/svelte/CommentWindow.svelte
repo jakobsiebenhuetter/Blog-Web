@@ -4,7 +4,7 @@ import supabase from "../../supabase/supabaseClient";
 import { onMount } from "svelte";
 import Button from "./Button.svelte";
 
-const {closeCommentWindow, blogid, userid} = $props();
+const {closeCommentWindow, blogid, username} = $props();
 let comments = $state([]);
 let message = $state("");
 let loading = $state("");
@@ -38,10 +38,22 @@ async function getDatabaseDataOrDummy(dummy = false) {
     }
     
     try {
+        // Hier einen Join mit der Usertabelle erstellen, um den Benutzernamen zu bekommen.
         const response = await supabase.from('comments').select().eq('blog_id', blogid);
+
+        const {data, error} = await supabase.from('users').select('*');
 
         if(response.error) {
             throw new Error('Das ist ein Error aus FetchComments :' + response.error.message);
+        }
+        console.log("Fetched comments:", data);
+        for(const comment of response.data) {
+            const user = data.find(user => user.user_id === comment.user_id);
+            if(user) {
+                comment.username = user.username;
+            } else {
+                comment.username = "Unknown User";
+            }
         }
 
         console.log("Fetched comments:", response.data);
@@ -67,15 +79,22 @@ const fetchComments = async () => {
 }
 
 const sendComment = async () => {
+    console.log(username);
     
     if(!message.trim()) {
         return;
     }
     
     try {
+        const {data: userData, error: fetchError} = await supabase.from('users').select('*').eq('username', username);
+        if(fetchError) {
+            throw new Error('Das ist ein Error aus sendMessage :' + fetchError.message);
+        }
+        console.log("User data for sending comment:", userData);
         const {data, error} = await supabase.from('comments').insert({
             comment: message,
-            user_id: userid,
+            username: username,
+            user_id: userData[0].user_id,
             blog_id: blogid,
         }).eq('blog_id', blogid);
 
@@ -120,14 +139,23 @@ function onEnter(event) {
             <div class={{'chat': true, 'loading': loading}}>
                 {#if loading}
                 <div>{loading}</div>
-                {:else}
+                
+                {:else if comments.length > 0}
+                
                 {#each comments as comment}
+                
                 <div class="comment">
                     <div>{transformDate(comment.created_at)}</div>
-                    <div class="comment">{comment.username}</div>
+                    <div class="comment">Von {comment.username}</div>
                     <div class="comment">{comment.comment}</div>
                 </div>
+                
                 {/each}
+                
+                {:else}
+                
+                <p>Keine Kommentare vorhanden</p>
+                
                 {/if}
             </div>
         </div>

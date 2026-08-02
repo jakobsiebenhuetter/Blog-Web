@@ -9,7 +9,7 @@ import {onMount} from 'svelte';
   let windowState = $state(
     {
       blogId: null,
-      userId: null
+      username: null
     }
   );
 
@@ -39,6 +39,7 @@ import {onMount} from 'svelte';
       setToastText("Bitte melde dich an");
       return;
     }
+    console.log("Opening comment window for topicId:", topicId);
     windowState.blogId = topicId;
   }
 
@@ -55,7 +56,13 @@ import {onMount} from 'svelte';
         // redirectToLogin();
         return false;
       }
-      windowState.userId = data.session.user.id;
+
+      const {data: userData, error: userError} = await supabase.from('users').select('*').eq('user_id', data.session.user.id);
+      if(userError) {
+        throw new Error(userError.message);
+      }
+
+      windowState.username = userData[0].username;
       return true;
 
     } catch(error) {
@@ -86,7 +93,7 @@ import {onMount} from 'svelte';
 </div>
 
 {#if windowState.blogId}
-  <CommentWindow blogid={windowState.blogId} userid={windowState.userId} closeCommentWindow={closeCommentWindow}/>
+  <CommentWindow blogid={windowState.blogId} username={windowState.username} closeCommentWindow={closeCommentWindow}/>
 {/if}
 
 <svelte:window
