@@ -9,7 +9,6 @@ let password = $state('');
 let username = $state('');
 let infomessage = $state('');
 
-//TODO - Einen Benutzernamen für die Anmeldung einführen, damit man nicht nur mit der Email-Adresse angemeldet ist. Dann kann man auch die Kommentare mit dem Benutzernamen versehen.
 //TODO - RPC in Supabase einführen, dann kann man alles im backend machen
 async function signup(event: Event) {
     event.preventDefault();
@@ -21,8 +20,6 @@ async function signup(event: Event) {
                 email: email,
                 password: password
             });
-
-        // Hier noch ein Insert in die Tabelle "users" machen, um den Benutzernamen zu speichern. Dann kann man den Benutzernamen
         
         if(error) {
             infomessage = error.message;
@@ -75,15 +72,6 @@ function reset() {
     password = '';
 }
 
-function emailChangeHandle(event: Event) {
-    const target = event.target as HTMLInputElement;
-    email = target.value;
-}
-
-function passwordChangeHandle(event: Event) {
-    const target = event.target as HTMLInputElement;
-    password = target.value;
-}
 
 function isValid(value: string) {
     if(!value.trim().length) {
