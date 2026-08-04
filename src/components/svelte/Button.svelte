@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 let {  handleClick = null, text = '', classes } = $props();
 </script>
 

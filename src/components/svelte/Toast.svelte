@@ -1,6 +1,6 @@
 
 
-<script>
+<script lang="ts">
     import {fly} from 'svelte/transition';
     import { cubicOut } from 'svelte/easing';
     import {getToastText, setToastText} from './shared.state.svelte.js';

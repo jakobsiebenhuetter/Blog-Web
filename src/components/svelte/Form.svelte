@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 //TODO - Cleanup Code
 import supabase from "../../supabase/supabaseClient";
 import {redirect} from "../../util/util.ts";
@@ -10,7 +10,7 @@ let username = $state('');
 let infomessage = $state('');
 
 //TODO - Einen Benutzernamen für die Anmeldung einführen, damit man nicht nur mit der Email-Adresse angemeldet ist. Dann kann man auch die Kommentare mit dem Benutzernamen versehen.
-
+//TODO - RPC in Supabase einführen, dann kann man alles im backend machen
 async function signup(event) {
     event.preventDefault();
 

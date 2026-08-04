@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 import Button from "./Button.svelte";
 const {topic, handleClick} = $props();
-
+console.log("BlogCard component received topic:");
 //TODO - Wenn ein man nicht eingeloggt ist, dann soll beim versuch die Kommentarfunktion zu klicken, eine toastmessage bekommen, dass man sich zuerst einlogen soll
 </script>
 

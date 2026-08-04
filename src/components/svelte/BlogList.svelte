@@ -1,5 +1,5 @@
-<script>
-import {onMount} from 'svelte';
+<script lang="ts">
+  import {onMount} from 'svelte';
   import BlogCard from "./BlogCard.svelte";
   import CommentWindow from "./CommentWindow.svelte";
   import {setToastText} from "./shared.state.svelte.js";

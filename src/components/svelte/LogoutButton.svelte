@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 import supabase from "../../supabase/supabaseClient";
 import Button from "./Button.svelte";
 import {onMount} from 'svelte';
