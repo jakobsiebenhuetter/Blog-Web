@@ -14,10 +14,10 @@ console.log("BlogCard component received topic:");
         </div>
         <div class="button-container">
         <span class="desktop">
-            <Button text='Kommentieren'  handleClick={(e) => handleClick(e)}></Button>
+            <Button text='Kommentieren'  handleClick={(e: Event) => handleClick(e)}></Button>
         </span >
             <span class="mobile">
-                <Button text='...' handleClick={(e) => handleClick(e)}></Button>
+                <Button text='...' handleClick={(e: Event) => handleClick(e)}></Button>
             </span>
         </div>
     </a>

@@ -5,8 +5,13 @@
   import {setToastText} from "./shared.state.svelte.js";
   import supabase from "../../supabase/supabaseClient.js";
 
+  type WindowState = {
+    blogId: string | null;
+    username: string | null;
+  };
+
   const {topics} = $props();
-  let windowState = $state(
+  let windowState: WindowState = $state(
     {
       blogId: null,
       username: null
@@ -30,7 +35,7 @@
     };
   });
   
-  async function openCommentWindow(e, topicId) {
+  async function openCommentWindow(e: Event, topicId: string) {
     e.preventDefault();
     e.stopPropagation();
 
@@ -86,7 +91,7 @@
 <div>
   {#each topics as topic}
   {#if topic.id}
-    <BlogCard topic={topic} handleClick={(event) => openCommentWindow(event, topic.id)}></BlogCard>
+    <BlogCard topic={topic} handleClick={(event: Event) => openCommentWindow(event, topic.id)}></BlogCard>
     {/if}
   {/each}
 

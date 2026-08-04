@@ -11,7 +11,7 @@ onMount(async () => {
 
 async function logout() {
     try {
-        const { data, error } = await supabase.auth.signOut();
+        const { error } = await supabase.auth.signOut();
         if(error) {
             throw new Error();
         }

@@ -1,5 +1,5 @@
 <script lang="ts">
-let {  handleClick = null, text = '', classes } = $props();
+let {  handleClick = null, text = '', classes = '' } = $props();
 </script>
 
 <button onclick={handleClick} class={classes}>{text}</button>

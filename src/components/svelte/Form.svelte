@@ -11,7 +11,7 @@ let infomessage = $state('');
 
 //TODO - Einen Benutzernamen für die Anmeldung einführen, damit man nicht nur mit der Email-Adresse angemeldet ist. Dann kann man auch die Kommentare mit dem Benutzernamen versehen.
 //TODO - RPC in Supabase einführen, dann kann man alles im backend machen
-async function signup(event) {
+async function signup(event: Event) {
     event.preventDefault();
 
     if(isValid(email) && isValid(password) && isValid(username)) {
@@ -31,7 +31,7 @@ async function signup(event) {
             const {data: userData, error: userError} = await supabase.from('users').insert({
                 username: username,
                 email: email,
-                user_id: data.user.id
+                user_id: data.user?.id
             });
             redirect('blog/main');
         }
@@ -39,12 +39,12 @@ async function signup(event) {
     reset();
 }
 
-async function login(event) {
+async function login(event: Event) {
     infomessage = 'Loading...'
     event.preventDefault();
     if(isValid(username) && isValid(password)) {
         const {data: userData, error: userError} = await supabase.from('users').select('*').eq('username', username);
-        const userCredentials = userData[0];
+        const userCredentials = userData![0];
         console.log(userData);
         if(userCredentials) {
             email = userCredentials.email;
@@ -75,15 +75,17 @@ function reset() {
     password = '';
 }
 
-function emailChangeHandle(event) {
-    email = event.target.value;
+function emailChangeHandle(event: Event) {
+    const target = event.target as HTMLInputElement;
+    email = target.value;
 }
 
-function passwordChangeHandle(event) {
-    password = event.target.value;
+function passwordChangeHandle(event: Event) {
+    const target = event.target as HTMLInputElement;
+    password = target.value;
 }
 
-function isValid(value) {
+function isValid(value: string) {
     if(!value.trim().length) {
         infomessage = 'Bitte etwas eingeben';
         return false;

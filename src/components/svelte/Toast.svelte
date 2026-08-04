@@ -7,7 +7,7 @@
     
     const {text} = $props();
 
-    function setText(val) {
+    function setText(val: string) {
         setToastText(val);
     }
 

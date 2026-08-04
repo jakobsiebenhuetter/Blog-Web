@@ -4,8 +4,14 @@ import supabase from "../../supabase/supabaseClient";
 import { onMount } from "svelte";
 import Button from "./Button.svelte";
 
+type Comment = {
+    username: string;
+    comment: string;
+    created_at: string;
+}
+
 const {closeCommentWindow, blogid, username} = $props();
-let comments = $state([]);
+let comments: Comment[] = $state([]);
 let message = $state("");
 let loading = $state("");
 
@@ -48,7 +54,7 @@ async function getDatabaseDataOrDummy(dummy = false) {
         }
         console.log("Fetched comments:", data);
         for(const comment of response.data) {
-            const user = data.find(user => user.user_id === comment.user_id);
+            const user = data?.find(user => user.user_id === comment.user_id);
             if(user) {
                 comment.username = user.username;
             } else {
@@ -112,13 +118,13 @@ const sendComment = async () => {
     await getDatabaseDataOrDummy();
 }
 
-function onEnter(event) {
+function onEnter(event: KeyboardEvent) {
     if(event.key === "Enter") {
         sendComment();
     }
 };
 
- function transformDate(date) {
+ function transformDate(date: string) {
     const dateObj = new Date(date);
      return dateObj.toLocaleDateString('de-DE', {
         year: 'numeric',
@@ -133,7 +139,7 @@ function onEnter(event) {
 <div class="modal-backdrop" onclick={closeCommentWindow}>
     <div class="comment-window" onclick={(e)=> {e.stopPropagation()}}>
         <div class="close-button-wrapper">
-            <Button class="close-button" text="X" circle=true handleClick={closeCommentWindow}></Button> 
+            <Button classes="close-button" text="X" handleClick={closeCommentWindow}></Button> 
         </div>
         <div class="chat-wrapper">
             <div class={{'chat': true, 'loading': loading}}>
