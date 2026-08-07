@@ -42,6 +42,8 @@
     if(! await checkIfUserExists()) {
       windowState.blogId = null;
       setToastText("Bitte melde dich an");
+      // const { data, error} = await supabase.rpc('hallo_world_test', {icon: ' :-) -> Hallo Welt'});
+      // console.log("RPC result:", data, error);
       return;
     }
     console.log("Opening comment window for topicId:", topicId);
@@ -73,14 +75,6 @@
     } catch(error) {
       console.error("Error checking user existence:", error);
     }
-  }
-
-  function redirectToLogin() {
-    window.location.href = 'http://localhost:4321/Blog-Web/login';
-  }
-
-  function redirectToBlog() {
-    window.location.href = 'http://localhost:4321/Blog-Web/blog';
   }
 
   function closeCommentWindow() {
