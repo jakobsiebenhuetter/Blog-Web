@@ -9,13 +9,11 @@ let password = $state('');
 let username = $state('');
 let infomessage = $state('');
 
-//TODO - RPC in Supabase einführen, dann kann man alles im backend machen
+//TODO - Einen zusätzlichen Link in der Navbar einfügen, der auf eine andere Webapp verweist, die nur für eingeloggt User einsichtbar ist. Diese Webapp soll einen Todoapp sein.
 async function signup(event: Event) {
     event.preventDefault();
 
     if(isValid(email) && isValid(password) && isValid(username)) {
-
-        // Hier noch checken ob es diesen usernamen schon gibt !!!
         const {data, error} = await supabase.auth.signUp({
                 email: email,
                 password: password
@@ -38,18 +36,20 @@ async function signup(event: Event) {
 
 async function login(event: Event) {
     infomessage = 'Loading...'
+    //NOTE - Jetzt wird Doppelgecheckt mit einem rpc im Backend , Email kann nicht mehr abgegriffen werden, wenn man das Passwort nicht kennt
     event.preventDefault();
     if(isValid(username) && isValid(password)) {
-        const {data: userData, error: userError} = await supabase.from('users').select('*').eq('username', username);
-        const userCredentials = userData![0];
-        console.log(userData);
-        if(userCredentials) {
-            email = userCredentials.email;
-        } else {
-            infomessage = 'Benutzer nicht gefunden, bitte registriere dich zuerst';
+        const {data: userData, error: userError} = await supabase.rpc('check_login', {
+            username_param: username,
+            password_param: password
+        });
+        console.log(userData, userError); 
+       
+        if(userError) {
+            infomessage = 'Ein Fehler ist aufgetreten';
             return;
         }
-
+        email = userData;
         const {data, error} = await supabase.auth.signInWithPassword({
             email: email,
             password: password
