@@ -2,6 +2,14 @@
     "topics": [
         {
             "id": "1",
+            "title": "Supabase - Ein Backend as a Service (BaaS) für moderne Webanwendungen",
+            "description": "Supabase ist eine Open-Source-Plattform, die Entwicklern hilft, schnell und einfach skalierbare Webanwendungen zu erstellen. Es bietet eine Vielzahl von Funktionen, darunter Authentifizierung, Datenbankverwaltung, Echtzeit-Updates und mehr.",
+            "href": "/Blog-Web/blog/articles/supabase",
+            "date": "2026-07-08",
+            "disabled": false
+        },
+        {
+            "id": "2",
             "title": "Claude Code - /loop Befehl",
             "description": "Fortsetzung des /goal-Projekts: Mit /loop wird die Todo-App Runde für Runde Richtung Todoist ausgebaut — mit Bug-Check nach jedem Feature.",
             "href": "/Blog-Web/blog/articles/claude-code-loop-command",
@@ -9,7 +17,7 @@
             "disabled": false
         },
         {
-            "id": "2",
+            "id": "3",
             "title": "Claude Code - /goal Befehl",
             "description": "Es handelt sich hierbei um ein kleines Testprojekt, wo ich mit nur fasst Vibe Coding und Claude Code den goal Befehl austeste, um herauszufinden, wie weit ich damit komme und wo die Grenzen sind.",
             "href": "/Blog-Web/blog/articles/claude-code-goal-command",
@@ -18,7 +26,7 @@
         },
         
         {
-            "id": "3",
+            "id": "4",
             "title": "React.js - Ein Überblick über das beliebte JavaScript-Framework",
             "description": "...",
             "href": "#",

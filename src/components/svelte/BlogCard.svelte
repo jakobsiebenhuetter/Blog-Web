@@ -17,7 +17,7 @@ console.log("BlogCard component received topic:");
             <Button text='Kommentieren'  handleClick={(e: Event) => handleClick(e)}></Button>
         </span >
             <span class="mobile">
-                <Button text='...' handleClick={(e: Event) => handleClick(e)}></Button>
+                <Button text={'\u22EF'} handleClick={(e: Event) => handleClick(e)}></Button>
             </span>
         </div>
     </a>
