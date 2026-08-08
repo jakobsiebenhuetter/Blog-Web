@@ -8,12 +8,14 @@ type Comment = {
     username: string;
     comment: string;
     created_at: string;
+    me: boolean;
 }
 
 const {closeCommentWindow, blogid, username} = $props();
 let comments: Comment[] = $state([]);
 let message = $state("");
 let loading = $state("");
+
 
 const dummyComments = [
     {username: "User1", comment: "This is a comment.", created_at: "2024-06-01 10:00"},
@@ -24,7 +26,8 @@ onMount(() => {
     // fetchComments();
     const fetchData = async () => {
         loading = "Loading ...";
-        await getDatabaseDataOrDummy();
+        const data = await getData();
+        comments.push(...data);
         loading = "";
     };
 
@@ -35,53 +38,8 @@ onMount(() => {
     }
 });
 
-async function getDatabaseDataOrDummy(dummy = false) {
-    if(dummy) // C++ Style :-)
-    {
-        console.log("Using dummy data for comments: ");
-        comments.push(...dummyComments);
-        return;
-    }
-    
-    try {
-        // Hier einen Join mit der Usertabelle erstellen, um den Benutzernamen zu bekommen.
-        const response = await supabase.from('comments').select().eq('blog_id', blogid);
-
-        const {data, error} = await supabase.from('users').select('*');
-
-        if(response.error) {
-            throw new Error('Das ist ein Error aus FetchComments :' + response.error.message);
-        }
-        console.log("Fetched comments:", data);
-        for(const comment of response.data) {
-            const user = data?.find(user => user.user_id === comment.user_id);
-            if(user) {
-                comment.username = user.username;
-            } else {
-                comment.username = "Unknown User";
-            }
-        }
-
-        console.log("Fetched comments:", response.data);
-        comments.push(...response.data);
-
-    } catch (error) {
-        console.error("(Aus catch) Error fetching comments:", error);
-    }
-}
-const fetchComments = async () => {
-    try {
-        const response = await supabase.from('comments').select();
-
-        if(response.error) {
-            throw new Error('Das ist ein Error aus FetchComments :' + response.error.message);
-        }
-
-        console.log("Fetched comments:", response.data);
-
-    } catch (error) {
-        console.error("(Aus catch) Error fetching comments:", error);
-    }
+function deleteComment() {
+    //TODO - Implement delete comment functionality
 }
 
 const sendComment = async () => {
@@ -115,7 +73,56 @@ const sendComment = async () => {
      message = "";
     //  comments.length = 0;
     comments = [];
-    await getDatabaseDataOrDummy();
+    comments.push(...await getData());
+}
+
+async function getComments() {
+    let comments: any = null;
+    const response = await supabase.from('comments').select().eq('blog_id', blogid);
+    comments = response.data;
+    return comments;
+}
+
+async function getUsers() {
+    let users: any = null;
+    const {data, error} = await supabase.from('users').select('*');
+    users = data;
+    return users;
+}
+
+async function getData() {
+    const transformedData = [];
+    try {
+        const comments = await getComments();
+        const users = await getUsers();
+        const {data} = await supabase.auth.getSession();
+        console.log(data)
+        let i = 0;
+        while(i < comments.length)
+        {
+            let j = 0;
+            while(j < users.length)
+            {
+                if(comments[i].user_id === users[j].user_id)
+                {
+                    transformedData.push({
+                        username: users[j].username,
+                        comment: comments[i].comment,
+                        created_at: comments[i].created_at,
+                        me: users[j].user_id === data?.session?.user.id
+                    });
+                }
+                j++;
+            }
+            i++;
+        }
+
+    }catch (error) {
+        console.error("Error fetching data:", error);
+    }
+
+    console.log("Transformed data:", transformedData);
+    return transformedData;
 }
 
 function onEnter(event: KeyboardEvent) {
@@ -123,6 +130,7 @@ function onEnter(event: KeyboardEvent) {
         sendComment();
     }
 };
+
 
  function transformDate(date: string) {
     const dateObj = new Date(date);
@@ -138,8 +146,11 @@ function onEnter(event: KeyboardEvent) {
 <!-- svelte-ignore a11y_no_static_element_interactions -->
 <div class="modal-backdrop" onclick={closeCommentWindow}>
     <div class="comment-window" onclick={(e)=> {e.stopPropagation()}}>
-        <div class="close-button-wrapper">
-            <Button classes="close-button" text="X" handleClick={closeCommentWindow}></Button> 
+
+        <div class="header">
+            <div class="close-button-wrapper">
+                <Button classes="close-button" text="X" handleClick={closeCommentWindow}></Button> 
+            </div>
         </div>
         <div class="chat-wrapper">
             <div class={{'chat': true, 'loading': loading}}>
@@ -152,7 +163,11 @@ function onEnter(event: KeyboardEvent) {
                 
                 <div class="comment">
                     <div>{transformDate(comment.created_at)}</div>
-                    <div class="comment">Von {comment.username}</div>
+                    <div>
+                        <span class={{'username': true, 'me': comment.me}}>
+                            {comment.username}
+                        </span>
+                    </div>
                     <div class="comment">{comment.comment}</div>
                 </div>
                 
@@ -207,6 +222,16 @@ function onEnter(event: KeyboardEvent) {
     border-radius: 5px;
 }
 
+.username {
+    font-weight: bold;
+    background-color: #e0e0e0;
+}
+
+.me {
+    font-weight: bold;
+    background-color: #ffd700;
+}
+
 .chat-wrapper {
     flex: 1;
     display: flex;
@@ -252,15 +277,22 @@ input[type="text"] {
     border-radius: 4px;
     cursor: pointer;
 } */
+
+.header {
+     width: 100%;
+     display: flex;
+     justify-content: flex-end;
+     align-items: center;
+
+}
 .close-button-wrapper {
     width: 20px;
     height: 20px;
     margin: 7px;
-    font-size: 12px;
     border-radius: 50%;
     background-color: transparent;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
     align-items: center;
 }
 
