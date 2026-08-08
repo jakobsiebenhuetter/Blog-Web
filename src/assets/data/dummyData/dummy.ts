@@ -43,9 +43,9 @@ export const sidebarProps: ILinks =
 			// target: "_blank",
 		},
 		
-		// {
-		// 	name: "LLMs",
-		// 	href: "#",
-		// },
+		{
+			name: "Was gäbe es zu tun ?",
+			href: "#",
+		},
 	]
 }
